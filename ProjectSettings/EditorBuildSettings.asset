@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Rafael/RafaelScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/JJ Scene/Test Scene 1.unity
+    guid: c0c875da4c1697445a05fcbf0edb81ad
   m_configObjects: {}
