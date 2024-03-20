@@ -6,7 +6,7 @@ public class MoveCam : MonoBehaviour
 {
     Camera Cam;
     float Xcoord;
-    float Ycoord;
+    float Zcoord;
     public GameObject destination;
 
   
@@ -15,8 +15,8 @@ public class MoveCam : MonoBehaviour
         Cam = Camera.main;
 
         Xcoord = destination.transform.position.x;
-        Ycoord = destination.transform.position.y;
-        Cam.transform.position = new Vector2(Xcoord, Ycoord);
+        Zcoord = destination.transform.position.z;
+        Cam.transform.position = new Vector2(Xcoord, Zcoord);
         
 
 
