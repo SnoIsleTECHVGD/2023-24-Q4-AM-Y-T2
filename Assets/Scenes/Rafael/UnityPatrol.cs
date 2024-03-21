@@ -36,8 +36,8 @@ public class UnityPatrol : MonoBehaviour
 
 
         //chose next point, which can cycle back to the start
-        destPoint = (destPoint + 1) % points.Length;
-
+        //destPoint = (destPoint + 1) % points.Length;
+        destPoint = (Random.Range(0,4)) % points.Length;
 
 
     }
