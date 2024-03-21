@@ -13,12 +13,13 @@ public class UnityPatrol : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
 
         //If autobraking is disabled, the agent will not slow down if it approaches a destination point
         agent.autoBraking = false;
+        
         GoToNextPoint();
 
     }
