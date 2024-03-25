@@ -9,14 +9,15 @@ public class TargetCode : MonoBehaviour
     
     public float timer;
     public float deathtimer;
+    public bool IsDead;
 
 
     private void Start()
     {
         deathtimer = 20.0f;
         GetComponent<SpriteRenderer>().enabled = false;
-
-    }
+        IsDead = false;
+}
     //if the enemy finds the target it stops in place and appears
     private void OnTriggerEnter(Collider other)
     {
@@ -86,7 +87,7 @@ public class TargetCode : MonoBehaviour
         if(deathtimer <= 0.0f)
         {
             Debug.Log("You are dead");
-
+            IsDead = true;
 
         }
 
