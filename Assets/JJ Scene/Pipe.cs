@@ -6,30 +6,72 @@ public class Pipe : MonoBehaviour
 {
     float[] rotations = { 0, 90, 180, 270 };
 
-    public float correctRotation;
+    public float[] correctRotation;
+    [SerializeField]
     bool isPlaced = false;
 
+    int PossibleRots = 1;
+
+    win win;
+
+
+    private void Awake()
+    {
+        win = GameObject.Find("win").GetComponent<win>();
+    }
     private void Start()
     {
+        PossibleRots = correctRotation.Length;
         int rand = Random.Range(0, rotations.Length);
         transform.eulerAngles = new Vector3(0, 0, rotations[rand]);
 
-        if (transform.eulerAngles.z == correctRotation)
+        if(PossibleRots > 1)
         {
-            isPlaced = true;
+            if (transform.eulerAngles.z == correctRotation[0] || transform.eulerAngles.z == correctRotation[1])
+            {
+                isPlaced = true;
+                win.correctMove();
+            }
+            
         }
+        else
+        {
+            if (transform.eulerAngles.z == correctRotation[0])
+            {
+                isPlaced = true;
+                win.correctMove();
+            }
+        }
+   
     }
     private void OnMouseDown()
     {
         transform.Rotate(new Vector3(0, 0, 90));
-
-        if (transform.eulerAngles.z == correctRotation && isPlaced == false)
+        if (PossibleRots > 1)
         {
-            isPlaced = true;
+            if (transform.eulerAngles.z == correctRotation[0] || transform.eulerAngles.z == correctRotation[1] && isPlaced == false)
+            {
+                isPlaced = true;
+                win.correctMove();
+            }
+            else if (isPlaced == true)
+            {
+                isPlaced = false;
+                win.wrongMove();
+            }
         }
-        else if(isPlaced == true)
+        else
         {
-            isPlaced = false;
+            if (transform.eulerAngles.z == correctRotation[0] && isPlaced == false)
+            {
+                isPlaced = true;
+                win.correctMove();
+            }
+            else if (isPlaced == true)
+            {
+                isPlaced = false;
+                win.wrongMove();
+            }
         }
     }
 }
