@@ -16,7 +16,7 @@ public class MoveCam : MonoBehaviour
 
         Xcoord = destination.transform.position.x;
         Ycoord = destination.transform.position.y;
-        Cam.transform.position = new Vector2(Xcoord, Ycoord);
+        Cam.transform.position = new Vector3(Xcoord, Ycoord, -100.0f);
         
 
 

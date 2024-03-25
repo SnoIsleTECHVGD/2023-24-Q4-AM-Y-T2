@@ -6,26 +6,27 @@ using UnityEngine.AI;
 public class TargetCode : MonoBehaviour
 {
 
-    public GameObject Creature;
+    
     public float timer;
     public float deathtimer;
+    public bool IsDead;
 
 
     private void Start()
     {
         deathtimer = 20.0f;
-        Creature.GetComponent<SpriteRenderer>().enabled = false;
-
-    }
+        GetComponent<SpriteRenderer>().enabled = false;
+        IsDead = false;
+}
     //if the enemy finds the target it stops in place and appears
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
 
-        Debug.Log(other.gameObject.name);
-        if (other.gameObject.CompareTag("Creature"))
+        
+        if (other.gameObject.CompareTag("Player"))
         {
-            Creature.GetComponent<SpriteRenderer>().enabled = true;
-            Creature.GetComponent<NavMeshAgent>().speed = 0;
+            GetComponent<SpriteRenderer>().enabled = true;
+            GetComponent<NavMeshAgent>().speed = 0;
             
         }
 
@@ -33,10 +34,10 @@ public class TargetCode : MonoBehaviour
 
     }
     //Makes timer stay at 50 and starts counter for if you die
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerStay(Collider other)
     {
 
-        if (other.gameObject.CompareTag("Creature"))
+        if (other.gameObject.CompareTag("Player"))
         {
             timer = 50.0f;
             deathtimer -= Time.deltaTime;
@@ -46,12 +47,13 @@ public class TargetCode : MonoBehaviour
     }
 
     //If player leaves then the creature dissapears from sight and starts the countdown. Also resets death counter.
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Creature"))
+        if (other.gameObject.CompareTag("Player"))
         {
             timer -= Time.deltaTime;
-            Creature.GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<NavMeshAgent>().speed = 3.5f;
+            GetComponent<SpriteRenderer>().enabled = false;
             deathtimer = 20.0f;
         }
 
@@ -67,15 +69,15 @@ public class TargetCode : MonoBehaviour
 
         if(timer > 0.0f)
         {
-            Creature.GetComponent<UnityPatrol>().enabled = false;
-            Creature.GetComponent<Followplayer>().enabled = true;
+            GetComponent<UnityPatrol>().enabled = false;
+           GetComponent<Followplayer>().enabled = true;
 
 
         }
         else
         {
-            Creature.GetComponent<UnityPatrol>().enabled = true;
-            Creature.GetComponent<Followplayer>().enabled = false;
+            GetComponent<UnityPatrol>().enabled = true;
+            GetComponent<Followplayer>().enabled = false;
             timer = 0.0f;
 
 
@@ -85,7 +87,7 @@ public class TargetCode : MonoBehaviour
         if(deathtimer <= 0.0f)
         {
             Debug.Log("You are dead");
-
+            IsDead = true;
 
         }
 
