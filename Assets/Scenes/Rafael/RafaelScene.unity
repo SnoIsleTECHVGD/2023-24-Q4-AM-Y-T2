@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 29233416}
   - component: {fileID: 29233417}
+  - component: {fileID: 29233418}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -195,7 +196,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
@@ -207,6 +208,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &29233418
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29233415}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 02017d6203a463148924369cd73a1135, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &152362444
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +352,8 @@ MonoBehaviour:
   delaytimer: 0
   clicked: 0
   blackout: {fileID: 29233417}
+  Blackoutsquare: {fileID: 29233415}
+  transitiontime: 0.5
 --- !u!61 &152903232
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -799,6 +822,8 @@ MonoBehaviour:
   delaytimer: 0
   clicked: 0
   blackout: {fileID: 29233417}
+  Blackoutsquare: {fileID: 29233415}
+  transitiontime: 0.5
 --- !u!61 &352890079
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2399,6 +2424,8 @@ MonoBehaviour:
   delaytimer: 0
   clicked: 0
   blackout: {fileID: 29233417}
+  Blackoutsquare: {fileID: 29233415}
+  transitiontime: 0.5
 --- !u!61 &1417272994
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2992,6 +3019,8 @@ MonoBehaviour:
   delaytimer: 0
   clicked: 0
   blackout: {fileID: 29233417}
+  Blackoutsquare: {fileID: 29233415}
+  transitiontime: 0.5
 --- !u!61 &1746522657
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4062,6 +4091,18 @@ PrefabInstance:
     - target: {fileID: 222043506294101266, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
       propertyPath: m_SortingOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 222043506294101268, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
+      propertyPath: EasyMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 222043506294101268, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
+      propertyPath: HardMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 222043506294101268, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
+      propertyPath: MediumMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 222043506294101271, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
       propertyPath: Playerpos

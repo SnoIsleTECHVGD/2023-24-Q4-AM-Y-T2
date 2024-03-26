@@ -10,6 +10,12 @@ public class TargetCode : MonoBehaviour
     public float timer;
     public float deathtimer;
     public bool IsDead;
+    public float WinTimer;
+    public bool EasyMode;
+    public bool MediumMode;
+    public bool HardMode;
+    public bool YouWon;
+    
 
 
     private void Start()
@@ -17,7 +23,35 @@ public class TargetCode : MonoBehaviour
         deathtimer = 20.0f;
         GetComponent<SpriteRenderer>().enabled = false;
         IsDead = false;
-}
+
+
+
+        if (EasyMode)
+        {
+            MediumMode = false;
+            HardMode = false;
+
+            WinTimer = 100.0f;
+
+        }
+
+        if (MediumMode)
+        {
+            EasyMode = false;
+            HardMode = false;
+
+            WinTimer = 200.0f;
+
+        }
+        if (HardMode)
+        {
+            MediumMode = false;
+            EasyMode = false;
+            WinTimer = 300.0f;
+
+
+        }
+    }
     //if the enemy finds the target it stops in place and appears
     private void OnTriggerEnter(Collider other)
     {
@@ -64,10 +98,13 @@ public class TargetCode : MonoBehaviour
 
     private void Update()
     {
-        timer -= Time.deltaTime;
         
+        timer -= Time.deltaTime;
 
-        if(timer > 0.0f)
+        WinTimer -= Time.deltaTime;
+
+
+        if (timer > 0.0f)
         {
             GetComponent<UnityPatrol>().enabled = false;
            GetComponent<Followplayer>().enabled = true;
@@ -88,6 +125,15 @@ public class TargetCode : MonoBehaviour
         {
             Debug.Log("You are dead");
             IsDead = true;
+            WinTimer = 1.0f;
+        }
+
+        if(WinTimer <= 0.0f)
+        {
+
+            Debug.Log("You Win!");
+            YouWon = true;
+
 
         }
 
