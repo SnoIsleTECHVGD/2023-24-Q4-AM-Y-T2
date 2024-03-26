@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,11 @@ public class TargetCode : MonoBehaviour
     public bool MediumMode;
     public bool HardMode;
     public bool YouWon;
-    
+
+    public float Xcoord;
+    public float Ycoord;
+    private Animator creatureanim;
+    public GameObject playercam;
 
 
     private void Start()
@@ -23,7 +28,7 @@ public class TargetCode : MonoBehaviour
         deathtimer = 20.0f;
         GetComponent<SpriteRenderer>().enabled = false;
         IsDead = false;
-
+        creatureanim = GetComponent<Animator>();
 
 
         if (EasyMode)
@@ -126,6 +131,7 @@ public class TargetCode : MonoBehaviour
             Debug.Log("You are dead");
             IsDead = true;
             WinTimer = 1.0f;
+            Invoke(nameof(DeathState), 0.000001f);
         }
 
         if(WinTimer <= 0.0f)
@@ -133,13 +139,29 @@ public class TargetCode : MonoBehaviour
 
             Debug.Log("You Win!");
             YouWon = true;
-
+            creatureanim.enabled = true;
+            
 
         }
 
 
+
+
     }
 
+
+    void DeathState()
+    {
+        
+        Xcoord = playercam.transform.position.x;
+        Ycoord = playercam.transform.position.y;
+
+
+        transform.position = new Vector3(Xcoord, Ycoord, -99.0f);
+
+
+
+    }
 
 
 }

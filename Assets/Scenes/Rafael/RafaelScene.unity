@@ -865,6 +865,31 @@ Transform:
   m_Father: {fileID: 1136440939}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &437342851 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 222043506294101261, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
+  m_PrefabInstance: {fileID: 222043505687581475}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &437342861
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437342851}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0fc37a62d35fdd541b650cee62c0d868, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &437557021
 GameObject:
   m_ObjectHideFlags: 0
@@ -4089,6 +4114,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 222043506294101266, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 03ef0edf3675ed748b901e611721d1bd, type: 3}
+    - target: {fileID: 222043506294101266, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
       propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
@@ -4100,6 +4129,10 @@ PrefabInstance:
       propertyPath: HardMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 222043506294101268, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
+      propertyPath: playercam
+      value: 
+      objectReference: {fileID: 519420028}
     - target: {fileID: 222043506294101268, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
       propertyPath: MediumMode
       value: 1
