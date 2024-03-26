@@ -7,9 +7,10 @@ public class win : MonoBehaviour
     public GameObject PipesHolder;
     public GameObject[] Pipes;
 
-    public int totalPipes = 0;
+    [SerializeField]
+    int totalPipes = 0;
 
-
+    int correctedPipes = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +25,22 @@ public class win : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void correctMove()
     {
-        
+        correctedPipes += 1;
+
+        Debug.Log("correct move");
+
+        if(correctedPipes == totalPipes)
+        {
+            Debug.Log("You Win!");
+        }
     }
+
+    public void wrongMove()
+    {
+        correctedPipes -= 1;
+    }
+
+
 }
