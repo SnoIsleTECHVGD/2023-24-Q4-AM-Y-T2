@@ -29,6 +29,8 @@ public class ErrorsForRooms : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool isMontiorOn = false;
+
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -54,11 +56,18 @@ public class ErrorsForRooms : MonoBehaviour
 
                     if(hit.transform.tag == "EditorOnly")
                     {
-                        if(MapLayout != null)
+                        if(MapLayout.activeInHierarchy == false && isMontiorOn == false)
                         {
                             MapLayout.SetActive(true);
                             Debug.Log("No");
+                            isMontiorOn = true;
                         }   
+                        //if(MapLayout.activeInHierarchy == true && isMontiorOn == true)
+                        //{
+                        //    MapLayout.SetActive(false);
+                        //    Debug.Log("Huh?");
+                        //    isMontiorOn = false;
+                        //}
                     }
 
                     return;
@@ -68,10 +77,6 @@ public class ErrorsForRooms : MonoBehaviour
                     Debug.Log("Ahhh we hit smth else but what is smth else.");
                 }
             }                
-        }
-        else
-        {
-            Debug.Log("I lied it was actually nothing");
         }
 
         RunTime += Time.deltaTime;
