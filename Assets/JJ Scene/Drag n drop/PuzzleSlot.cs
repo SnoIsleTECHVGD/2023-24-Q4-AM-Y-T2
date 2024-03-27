@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class PuzzleSlot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public SpriteRenderer Renderer;
+
+    [SerializeField] private AudioSource _source;
+    [SerializeField] private AudioClip _completeClip;
+
+    public void Placed()
     {
-        
+        _source.PlayOneShot(_completeClip);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
 }
