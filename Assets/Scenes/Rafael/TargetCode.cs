@@ -130,8 +130,8 @@ public class TargetCode : MonoBehaviour
         {
             Debug.Log("You are dead");
             IsDead = true;
-            WinTimer = 1.0f;
-            Invoke(nameof(DeathState), 0.000001f);
+            creatureanim.enabled = true;
+            Invoke(nameof(DeathState), 0.0f);
         }
 
         if(WinTimer <= 0.0f)
@@ -139,13 +139,18 @@ public class TargetCode : MonoBehaviour
 
             Debug.Log("You Win!");
             YouWon = true;
-            creatureanim.enabled = true;
+           
             
 
         }
 
 
+        if (IsDead)
+        {
+            WinTimer = 1.0f;
 
+
+        }
 
     }
 
