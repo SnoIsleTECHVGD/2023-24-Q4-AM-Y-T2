@@ -8,16 +8,41 @@ public class DoorCode : MonoBehaviour
 {
     // Start is called before the first frame update
     public LayerMask Door;
+    public LayerMask Entry;
     public GameObject leftdoor;
     public GameObject rightdoor;
+    public GameObject leftentry;
+    public GameObject rightentry;
     public GameObject Player;
     public bool leftdoorclosed;
-    public bool rightdoorclosed; 
-
+    public bool rightdoorclosed;
+    
 
     private void Update()
     {
 
+        RaycastHit2D rightentryhit = Physics2D.Raycast(transform.position, Vector2.right, Entry);
+
+        if (rightentryhit.collider != null)
+        {
+
+            rightentry = rightentryhit.collider.gameObject;
+
+            if (rightdoorclosed)
+            {
+                rightentry.GetComponent<BoxCollider2D>().enabled = false;
+
+
+
+            }
+            else
+            {
+
+                rightentry.GetComponent<BoxCollider2D>().enabled = true;
+
+            }
+
+        }
         RaycastHit righthit;
         if (Physics.Raycast(transform.position, transform.right, out righthit, 10f, Door))
         {
@@ -35,6 +60,51 @@ public class DoorCode : MonoBehaviour
         }
 
 
+        //RaycastHit rightentryhit;
+        //if (Physics.Raycast(transform.position, transform.right, out rightentryhit, 10f, Entry))
+        //{
+        //    Debug.DrawRay(transform.position, transform.right * 10f, Color.red);
+        //    rightentry = rightentryhit.collider.gameObject;
+
+        //    if (rightdoorclosed)
+        //    {
+        //        rightentry.GetComponent<BoxCollider2D>().enabled = false;
+
+
+
+        //    }
+        //    else
+        //    {
+
+        //        rightentry.GetComponent<BoxCollider2D>().enabled = true;
+
+        //    }
+
+
+        //}
+
+        RaycastHit2D leftentryhit = Physics2D.Raycast(transform.position, -Vector2.right, Entry);
+
+        if (leftentryhit.collider != null)
+        {
+
+            leftentry = leftentryhit.collider.gameObject;
+
+            if (leftdoorclosed)
+            {
+                leftentry.GetComponent<BoxCollider2D>().enabled = false;
+
+
+
+            }
+            else
+            {
+
+                leftentry.GetComponent<BoxCollider2D>().enabled = true;
+
+            }
+
+        }
 
         RaycastHit lefthit;
         if (Physics.Raycast(transform.position, -transform.right, out lefthit, 10f, Door))
@@ -53,12 +123,35 @@ public class DoorCode : MonoBehaviour
 
         }
 
+        //RaycastHit leftentryhit;
+        //if (Physics.Raycast(transform.position, transform.right, out leftentryhit, 10f, Entry))
+        //{
+        //    Debug.DrawRay(transform.position, transform.right * 10f, Color.red);
+        //    leftentry = leftentryhit.collider.gameObject;
+
+        //    if (leftdoorclosed)
+        //    {
+        //        leftentry.GetComponent<BoxCollider2D>().enabled = false;
+
+
+
+        //    }
+        //    else
+        //    {
+
+        //        leftentry.GetComponent<BoxCollider2D>().enabled = true;
+
+        //    }
+
+
+        //}
 
         if (Player.GetComponent<Animator>().enabled == true)
         {
             leftdoor = null;
             rightdoor = null;
-
+            //leftentry = null;
+            //rightentry = null;
 
 
         }
