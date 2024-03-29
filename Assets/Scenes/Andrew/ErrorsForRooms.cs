@@ -1,30 +1,30 @@
+using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering.Universal;
 
 public class ErrorsForRooms : MonoBehaviour
 {
-    public GameObject ErrorLight;
+    #region Variables
     public GameObject MapLayout;
     public GameObject Lamp;
 
-    //Don't ask why these are all Serialized, they just are
+    public Light2D[] _mapLights; //Lights for each room for when an error occurs there
+
     [SerializeField]
     private GameObject[] _rooms; //Creates an array that allows for any # of rooms
-
-    public GameObject[] _mapLights; //Lights for each room for when an error occurs there
     [SerializeField]
     private float RunTime; //How long the game is running
 
     public float ErrorTimer; //Timer for how often a error occurs, will scale as time progresses
-    public float DeathTimer; //Once an error occurs this timer will start and if they dont complete in time, they maybe die?
 
     public string RoomError; //7 rooms
-    [HideInInspector]
-    public int RoomNumber; 
 
     public bool IsThereError = false;
     public bool isMontiorOn;
+    [HideInInspector]
+    public int RoomNumber;
+    #endregion 
 
     // Start is called before the first frame update
     void Start()
@@ -42,88 +42,90 @@ public class ErrorsForRooms : MonoBehaviour
 
             Collider2D hit = Physics2D.OverlapPoint(touchPos);
 
-            if ((hit != null))
+            if (hit != null)
             {
-                if(!EventSystem.current.IsPointerOverGameObject()) 
-                {
-                    Debug.Log("We actaully hit: " + hit.transform.name);
-
-                    if(hit.transform.tag == "GameController")
-                    {
-                        if(IsThereError == true && ErrorLight != null)
-                        {
-                            IsThereError = false;
-                            ErrorLight.SetActive(false);
-                            Debug.Log("Error resolved");
-                        }
-                    }
-
-                    if(hit.transform.tag == "EditorOnly")
-                    {
-                        if(MapLayout.activeInHierarchy == false && isMontiorOn == false)
-                        {
-                            MapLayout.SetActive(true);
-                            Debug.Log("No");
-                            isMontiorOn = true;
-                            Lamp.SetActive(false);
-
-                            if(ErrorLight.activeInHierarchy == true)
-                            {
-                                ErrorLight.SetActive(false);
-                            }
-
-                            if(IsThereError == true)
-                            {
-                                _mapLights[RoomNumber].gameObject.SetActive(true);
-                            }
-                            else
-                            {
-                                _mapLights[RoomNumber].gameObject.SetActive(false);
-                            }    
-                        }   
-                        else
-                        {
-                            MapLayout.SetActive(false);
-                            Debug.Log("Huh?");
-                            isMontiorOn = false;
-                            Lamp.SetActive(true);
-                            if(ErrorLight.activeInHierarchy == false && IsThereError == true)
-                            {
-                                ErrorLight.SetActive(true);
-                            }
-                        }
-                    }
-
-                    return;
-                }   
-                else
+                if(EventSystem.current.IsPointerOverGameObject()) 
                 {
                     Debug.Log("Ahhh we hit smth else but what is smth else.");
+                    return;
+                }
+
+                Debug.Log("We actaully hit: " + hit.transform.name);
+
+                switch(hit.transform.tag)
+                {
+                    case "Monitor":
+                        MonitorInteract();
+                        return;
+                    case "Map":
+                        MapInteract();
+                        return;
+                    //case "Door":
+                    //    return;
+                    case "PuzzleDebugger":
+                        PuzzleDebuggerInteract();
+                        return;
+                    default:
+                        return;
                 }
             }                
         }
 
         RunTime += Time.deltaTime;
 
-        if(IsThereError == true)
-        {
-            DeathTimer -= Time.deltaTime;
-        }
-
-        if(RunTime >= 10)
+        if(RunTime >= 0)
         {
             ErrorTimer -= Time.deltaTime;
 
             if (ErrorTimer <= 0 )
             {
+                _mapLights[7].enabled = true;
                 MakingRoomErrors();
                 return;
             }
         }
     }
 
+    #region Interact Calls
+    private void PuzzleDebuggerInteract()
+    {
+        if (IsThereError)
+        {
+            IsThereError = false;
+            Debug.Log("Error resolved");
+            _mapLights[7].enabled = false;
+        }
+    }
+
+    private void MapInteract()
+    {
+        MapLayout.SetActive(false);
+        isMontiorOn = false;
+        Lamp.SetActive(true);
+        if (IsThereError)
+            _mapLights[7].enabled = true;
+    }
+
+    private void MonitorInteract()
+    {
+        if (MapLayout.activeInHierarchy || isMontiorOn)
+            return;
+
+        MapLayout.SetActive(true);
+        isMontiorOn = true;
+        Lamp.SetActive(false);
+        _mapLights[7].enabled = false;
+
+        if (IsThereError)
+            _mapLights[RoomNumber].gameObject.SetActive(true);
+        else
+            _mapLights[RoomNumber].gameObject.SetActive(false);
+    }
+    #endregion
+
     void MakingRoomErrors()
     {
+        #region Error Timer
         ErrorTimer = 10;
 
         if(RunTime >= 45) //As time progress it will shorten the timer 
@@ -143,77 +145,17 @@ public class ErrorsForRooms : MonoBehaviour
             ErrorTimer = 6;
             Debug.Log("Decreasing to 6 seconds");
         }
+        #endregion
 
-        //How this works is weird but simple
-        //All it does it will roll a dice that has any number of sides. It just depends on our number of rooms.
-        //Then what it will do it will divide that by the number of room again to make sure it will be one of the rooms
-        float error = Random.Range(0, _rooms.Length);
-        switch(error%_rooms.Length)
-        {
-            case 1:
-                RoomError = _rooms[0].ToString(); //Just Debugging to see and make sure it is hitting the right room
-                ErrorLight.SetActive(true); //Setting the error light off 
-                IsThereError=true; //Bool that an error is happening, simplest part to understand i hope
-                DeathTimer = 8; // A timer that can change if needed, it will need to be changed
-                RoomNumber = 0; // The indiactor of what room it is
-                break;
-            case 2:
-                RoomError = _rooms[1].ToString();
-                ErrorLight.SetActive(true);
-                IsThereError=true;
-                DeathTimer = 8;
-                RoomNumber = 1;
-                break;
-            case 3:
-                RoomError = _rooms[2].ToString();
-                ErrorLight.SetActive(true);
-                IsThereError=true;
-                DeathTimer = 8;
-                RoomNumber = 2;
-                break;
-            case 4:
-                RoomError = _rooms[3].ToString();
-                ErrorLight.SetActive(true);
-                IsThereError=true;
-                DeathTimer = 8;
-                RoomNumber = 3;
-                break;
-            case 5:
-                RoomError = _rooms[4].ToString();
-                ErrorLight.SetActive(true);
-                IsThereError=true;
-                DeathTimer = 8;
-                RoomNumber = 4;
-                break;
-            case 6:
-                RoomError = _rooms[5].ToString();
-                ErrorLight.SetActive(true);
-                IsThereError=true;
-                DeathTimer = 8;
-                RoomNumber = 5;
-                break;
-            case 7:
-                RoomError = _rooms[6].ToString();
-                ErrorLight.SetActive(true);
-                IsThereError=true;
-                DeathTimer = 8;
-                RoomNumber = 6;
-                break;
-            default:
-                RoomError = "None";
-                if((ErrorLight != null && IsThereError == false))
-                {
-                    ErrorLight.SetActive(false);
-                    Debug.Log("No error occuring");
-                }
-                else
-                {
-                    ErrorLight.SetActive(true);
-                    IsThereError = true;
-                    Debug.Log("Error still occuring, please resolve it.");
-                }
-                break;
-        }
+        #region Room Randomizer
+        int error = Random.Range(0, _rooms.Length);
+
+        RoomError = _rooms[error].ToString(); //Just Debugging to see and make sure it is hitting the right room 
+        IsThereError = true; //Bool that an error is happening, simplest part to understand i hope
+        RoomNumber = error; // The indiactor of what room it is
+
+        #endregion
+
         Debug.Log(RoomError); //Debugging
     }
 }

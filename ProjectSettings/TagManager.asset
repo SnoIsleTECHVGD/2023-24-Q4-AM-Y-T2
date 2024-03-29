@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Doorways
   - Creature
+  - ErrorLight
+  - Puzzle
+  - Monitor
   layers:
   - Default
   - TransparentFX

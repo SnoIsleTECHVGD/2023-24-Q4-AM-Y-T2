@@ -1,17 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class FlickerLight : MonoBehaviour
 {
-    private GameObject[] _light;
     public float MinTime;
     public float MaxTime;
     public float Timer;
 
-    [SerializeField, HideInInspector]
     private ErrorsForRooms errors;
 
     //public AudioSource AudioSource; //IDK yet...nvm, figured it out. It is the source that will play the noise. DUH!
@@ -26,26 +21,22 @@ public class FlickerLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(errors.RoomNumber > 0)
+        if(errors.IsThereError)
         {
-            //_light = errors._mapLights[errors.RoomNumber];ss
+            if(errors.isMontiorOn)
+                LightFlicker(errors._mapLights[errors.RoomNumber]);
+            if(!errors.isMontiorOn)
+                LightFlicker(errors._mapLights[7]);
         }
-        else
-        {
-            _light = GameObject.FindGameObjectsWithTag("ErrorLight");
-        }
-
-        LightFlicker();
     }
 
-    void LightFlicker()
+    void LightFlicker(Light2D _light)
     {
         if(Timer > 0)
             Timer -= Time.deltaTime;
-
-        if(Timer<= 0)
+        else
         {
-            //_light.enabled = !_light.enabled;
+            _light.enabled = !_light.enabled;
             Timer = Random.Range(MinTime, MaxTime);
             //AudioSource.PlayOneShot(lightAudio);
         }
