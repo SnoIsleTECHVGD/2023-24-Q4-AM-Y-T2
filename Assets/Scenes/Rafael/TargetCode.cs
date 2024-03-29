@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class TargetCode : MonoBehaviour
 {
@@ -21,7 +22,8 @@ public class TargetCode : MonoBehaviour
     public float Ycoord;
     private Animator creatureanim;
     public GameObject playercam;
-
+    public float chasespeed = 8.0f;
+    public float patrolspeed = 3.5f;
 
     private void Start()
     {
@@ -91,7 +93,7 @@ public class TargetCode : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             timer -= Time.deltaTime;
-            GetComponent<NavMeshAgent>().speed = 3.5f;
+            GetComponent<NavMeshAgent>().speed = chasespeed;
             GetComponent<SpriteRenderer>().enabled = false;
             deathtimer = 20.0f;
         }
@@ -118,6 +120,7 @@ public class TargetCode : MonoBehaviour
         }
         else
         {
+            GetComponent<NavMeshAgent>().speed = patrolspeed;
             GetComponent<UnityPatrol>().enabled = true;
             GetComponent<Followplayer>().enabled = false;
             timer = 0.0f;

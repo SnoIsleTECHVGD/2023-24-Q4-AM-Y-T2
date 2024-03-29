@@ -5025,6 +5025,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 222043506294101267, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
+      propertyPath: m_AutoBraking
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 222043506294101267, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
+      propertyPath: m_Acceleration
+      value: 999
+      objectReference: {fileID: 0}
     - target: {fileID: 222043506294101268, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
       propertyPath: EasyMode
       value: 0
@@ -5040,6 +5048,14 @@ PrefabInstance:
     - target: {fileID: 222043506294101268, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
       propertyPath: MediumMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 222043506294101268, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
+      propertyPath: chasespeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 222043506294101268, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
+      propertyPath: patrolspeed
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 222043506294101271, guid: 9bb0c0f35b33a29488e10b0992ae52bb, type: 3}
       propertyPath: Playerpos
