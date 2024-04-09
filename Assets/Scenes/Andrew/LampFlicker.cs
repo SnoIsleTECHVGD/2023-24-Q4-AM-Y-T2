@@ -9,6 +9,8 @@ public class LampFlicker : MonoBehaviour
     public Light2D Lamp;
     private float random;
 
+    public float AcceratedTime;
+
     private void Start()
     {
         random = Random.Range(0.0f, 20f);
@@ -17,9 +19,9 @@ public class LampFlicker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float maxInt = 8.2f;
-        float minInt = 1.0f;
-        float noise = Mathf.PerlinNoise(random, Time.time);
+        float maxInt = 15.2f;
+        float minInt = 2.0f;
+        float noise = Mathf.PerlinNoise(random, Time.time * AcceratedTime);
 
         Lamp.intensity = Mathf.Lerp(minInt,maxInt, noise);
     }

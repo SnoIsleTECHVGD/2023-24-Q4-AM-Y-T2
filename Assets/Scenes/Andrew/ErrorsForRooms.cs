@@ -60,8 +60,6 @@ public class ErrorsForRooms : MonoBehaviour
                     case "Map":
                         MapInteract();
                         return;
-                    //case "Door":
-                    //    return;
                     case "PuzzleDebugger":
                         PuzzleDebuggerInteract();
                         return;
