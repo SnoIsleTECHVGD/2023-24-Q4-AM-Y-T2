@@ -12,12 +12,12 @@ public class Pipe : MonoBehaviour
 
     int PossibleRots = 1;
 
-    win win;
+    GameManager gameManager;
 
 
     private void Awake()
     {
-        win = GameObject.Find("win").GetComponent<win>();
+        gameManager = GameObject.Find("gameManager").GetComponent<GameManager>();
     }
     private void Start()
     {
@@ -30,7 +30,7 @@ public class Pipe : MonoBehaviour
             if (transform.eulerAngles.z == correctRotation[0] || transform.eulerAngles.z == correctRotation[1])
             {
                 isPlaced = true;
-                win.correctMove();
+                gameManager.correctMove();
             }
             
         }
@@ -39,7 +39,7 @@ public class Pipe : MonoBehaviour
             if (transform.eulerAngles.z == correctRotation[0])
             {
                 isPlaced = true;
-                win.correctMove();
+                gameManager.correctMove();
             }
         }
    
@@ -52,12 +52,12 @@ public class Pipe : MonoBehaviour
             if (transform.eulerAngles.z == correctRotation[0] || transform.eulerAngles.z == correctRotation[1] && isPlaced == false)
             {
                 isPlaced = true;
-                win.correctMove();
+                gameManager.correctMove();
             }
             else if (isPlaced == true)
             {
                 isPlaced = false;
-                win.wrongMove();
+                gameManager.wrongMove();
             }
         }
         else
@@ -65,12 +65,12 @@ public class Pipe : MonoBehaviour
             if (transform.eulerAngles.z == correctRotation[0] && isPlaced == false)
             {
                 isPlaced = true;
-                win.correctMove();
+                gameManager.correctMove();
             }
             else if (isPlaced == true)
             {
                 isPlaced = false;
-                win.wrongMove();
+                gameManager.wrongMove();
             }
         }
     }
