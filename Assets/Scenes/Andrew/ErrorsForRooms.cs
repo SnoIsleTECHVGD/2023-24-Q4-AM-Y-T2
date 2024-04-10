@@ -91,7 +91,13 @@ public class ErrorsForRooms : MonoBehaviour
         {
             IsThereError = false;
             Debug.Log("Error resolved");
-            _mapLights[7].enabled = false;
+            foreach(Light2D blur in _mapLights)
+            {
+                if(blur.enabled)
+                {
+                    blur.enabled = false;
+                }
+            }
         }
     }
 
