@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class LampFlicker : MonoBehaviour
 {
-    public Light2D Lamp;
+    public Light2D Light;
     private float random;
 
     public float AcceratedTime;
@@ -23,6 +24,6 @@ public class LampFlicker : MonoBehaviour
         float minInt = 2.0f;
         float noise = Mathf.PerlinNoise(random, Time.time * AcceratedTime);
 
-        Lamp.intensity = Mathf.Lerp(minInt,maxInt, noise);
+        Light.intensity = Mathf.Lerp(minInt,maxInt, noise);
     }
 }
