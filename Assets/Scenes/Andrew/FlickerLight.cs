@@ -20,7 +20,7 @@ public class FlickerLight : MonoBehaviour
         if(errors.isMontiorOn)
             Light = errors._mapLights[errors.RoomNumber];
         if (!errors.isMontiorOn)
-            Light = errors._mapLights[7];
+            Light = errors._mapLights[^1];
 
         float maxInt = 15.2f;
         float minInt = 2.0f;

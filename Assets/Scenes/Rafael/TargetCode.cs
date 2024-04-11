@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
 
+
 public class TargetCode : MonoBehaviour
 {
 
@@ -24,10 +25,13 @@ public class TargetCode : MonoBehaviour
     public GameObject playercam;
     public float chasespeed = 8.0f;
     public float patrolspeed = 3.5f;
+    public float waittime;
+    public GameObject win;
+    public GameObject lose;
 
     private void Start()
     {
-        deathtimer = 20.0f;
+        deathtimer = 5.0f;
         GetComponent<SpriteRenderer>().enabled = false;
         IsDead = false;
         creatureanim = GetComponent<Animator>();
@@ -94,6 +98,7 @@ public class TargetCode : MonoBehaviour
         {
             timer -= Time.deltaTime;
             GetComponent<NavMeshAgent>().speed = chasespeed;
+            GetComponent<NavMeshAgent>().acceleration = 99999999f;
             GetComponent<SpriteRenderer>().enabled = false;
             deathtimer = 20.0f;
         }
@@ -121,6 +126,7 @@ public class TargetCode : MonoBehaviour
         else
         {
             GetComponent<NavMeshAgent>().speed = patrolspeed;
+            GetComponent<NavMeshAgent>().acceleration = 8.0f;
             GetComponent<UnityPatrol>().enabled = true;
             GetComponent<Followplayer>().enabled = false;
             timer = 0.0f;
@@ -142,8 +148,8 @@ public class TargetCode : MonoBehaviour
 
             Debug.Log("You Win!");
             YouWon = true;
-           
-            
+            playercam.transform.position = new Vector3(win.transform.position.x, win.transform.position.y, -100);
+
 
         }
 
@@ -166,7 +172,14 @@ public class TargetCode : MonoBehaviour
 
 
         transform.position = new Vector3(Xcoord, Ycoord, -99.0f);
+        Invoke(nameof(TimeOutCorner), waittime);
 
+    }
+
+    void TimeOutCorner()
+    {
+
+        playercam.transform.position = new Vector3(lose.transform.position.x, lose.transform.position.y, -100);
 
 
     }

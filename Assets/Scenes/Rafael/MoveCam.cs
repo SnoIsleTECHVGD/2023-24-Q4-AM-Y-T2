@@ -13,7 +13,6 @@ public class MoveCam : MonoBehaviour
     public GameObject destination;
     public float delaytimer;
     public bool clicked;
-    public SpriteRenderer blackout;
     static bool Isfading;
     public GameObject Blackoutsquare;
     private Animator FadeAnim;

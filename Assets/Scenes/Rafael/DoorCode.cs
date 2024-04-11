@@ -16,11 +16,13 @@ public class DoorCode : MonoBehaviour
     public GameObject Player;
     public bool leftdoorclosed;
     public bool rightdoorclosed;
-    
+    public GameObject Playerpos;
 
     private void Update()
     {
 
+        transform.position = new Vector3(Playerpos.transform.position.x, Playerpos.transform.position.y, 0.0f);
+        
         RaycastHit2D rightentryhit = Physics2D.Raycast(transform.position, Vector2.right, Entry);
 
         if (rightentryhit.collider != null)
@@ -83,7 +85,7 @@ public class DoorCode : MonoBehaviour
 
         //}
 
-        RaycastHit2D leftentryhit = Physics2D.Raycast(transform.position, -Vector2.right, Entry);
+        RaycastHit2D leftentryhit = Physics2D.Raycast(transform.position, -Vector2.right, 10.0f,Entry);
 
         if (leftentryhit.collider != null)
         {
