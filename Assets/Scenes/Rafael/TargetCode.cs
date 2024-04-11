@@ -27,7 +27,7 @@ public class TargetCode : MonoBehaviour
 
     private void Start()
     {
-        deathtimer = 20.0f;
+        deathtimer = 5.0f;
         GetComponent<SpriteRenderer>().enabled = false;
         IsDead = false;
         creatureanim = GetComponent<Animator>();
@@ -94,6 +94,7 @@ public class TargetCode : MonoBehaviour
         {
             timer -= Time.deltaTime;
             GetComponent<NavMeshAgent>().speed = chasespeed;
+            GetComponent<NavMeshAgent>().acceleration = 99999999f;
             GetComponent<SpriteRenderer>().enabled = false;
             deathtimer = 20.0f;
         }
@@ -121,6 +122,7 @@ public class TargetCode : MonoBehaviour
         else
         {
             GetComponent<NavMeshAgent>().speed = patrolspeed;
+            GetComponent<NavMeshAgent>().acceleration = 8.0f;
             GetComponent<UnityPatrol>().enabled = true;
             GetComponent<Followplayer>().enabled = false;
             timer = 0.0f;
