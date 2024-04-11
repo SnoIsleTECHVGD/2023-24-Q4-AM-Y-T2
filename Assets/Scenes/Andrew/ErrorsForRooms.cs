@@ -71,18 +71,28 @@ public class ErrorsForRooms : MonoBehaviour
 
         RunTime += Time.deltaTime;
 
-        if(RunTime >= 0)
+        
+        if(RunTime > 0)
         {
             ErrorTimer -= Time.deltaTime;
-
+            //When the timer hits below zero then it will roll some dice to see if it will error out
             if (ErrorTimer <= 0 )
             {
-                _mapLights[7].enabled = true;
+                _mapLights[^1].enabled = true;
                 MakingRoomErrors();
                 return;
             }
         }
     }
+
+    #region Lighting
+    private void DoFlicker()
+    {
+        if (_mapLights == null)
+            return;
+    }
+
+    #endregion
 
     #region Interact Calls
     private void PuzzleDebuggerInteract()
@@ -107,7 +117,7 @@ public class ErrorsForRooms : MonoBehaviour
         isMontiorOn = false;
         Lamp.SetActive(true);
         if (IsThereError)
-            _mapLights[7].enabled = true;
+            _mapLights[^1].enabled = true;
     }
 
     private void MonitorInteract()
@@ -118,7 +128,7 @@ public class ErrorsForRooms : MonoBehaviour
         MapLayout.SetActive(true);
         isMontiorOn = true;
         Lamp.SetActive(false);
-        _mapLights[7].enabled = false;
+        _mapLights[^1].enabled = false;
 
         if (IsThereError)
             _mapLights[RoomNumber].gameObject.SetActive(true);
