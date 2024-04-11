@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainSceneFolder/MainScene.unity
     guid: e63bfa51154080c4783d9530941dd365
+  - enabled: 0
+    path: Assets/Scenes/Rafael/winsmile.unity
+    guid: 35d55b3c5ddbab9419c9bb4936fa7cca
+  - enabled: 0
+    path: Assets/Scenes/Rafael/losefrown.unity
+    guid: e408874138e9bf8488487786bb9d5b65
   m_configObjects: {}
