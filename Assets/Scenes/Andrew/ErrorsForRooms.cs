@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -24,12 +26,35 @@ public class ErrorsForRooms : MonoBehaviour
     public bool isMontiorOn;
     [HideInInspector]
     public int RoomNumber;
-    #endregion 
+
+    //All just for lighting, bro this sucks
+    [SerializeField] private int _smoothing = 5;
+    [SerializeField] private int _delay = 5;
+    [SerializeField] private float _duration = 5;
+
+    private float _maxIntensity;
+    private float _minIntensity;
+    private Queue<float> _smoothQueue;
+    private float _lastSum = 0;
+    private float _factor;
+    private Coroutine _flickerCoroutine;
+    private WaitForSeconds _seconds;
+    #endregion
+    public void Reset()
+    {
+        StopCoroutine(_flickerCoroutine);
+        _smoothQueue.Clear();
+        _lastSum = 0;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         ErrorTimer = 10;
+        _seconds = new WaitForSeconds(_delay);
+        _maxIntensity = _mapLights[^1].intensity;
+        _smoothQueue = new Queue<float>(_smoothing);
+        _flickerCoroutine = StartCoroutine(Flicker());
     }
 
     // Update is called once per frame
@@ -90,6 +115,23 @@ public class ErrorsForRooms : MonoBehaviour
     {
         if (_mapLights == null)
             return;
+        while(_smoothQueue.Count >= _smoothing)
+        {
+
+        }
+    }
+
+    private IEnumerator Flicker()
+    {
+        float t = 0.0f;
+        yield return _seconds;
+        while (t<_duration)
+        {
+            DoFlicker();
+            t += Time.deltaTime;
+            yield return null;
+        }
+        _flickerCoroutine = StartCoroutine(Flicker());
     }
 
     #endregion
