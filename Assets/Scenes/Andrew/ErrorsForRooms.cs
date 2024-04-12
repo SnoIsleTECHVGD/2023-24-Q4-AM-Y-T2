@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering.Universal;
+using System.Linq;
 
 public class ErrorsForRooms : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class ErrorsForRooms : MonoBehaviour
     public GameObject Lamp;
 
     public Light2D[] _mapLights; //Lights for each room for when an error occurs there
+    public Light2D errorLight;
+
 
     [SerializeField]
     private GameObject[] _rooms; //Creates an array that allows for any # of rooms
@@ -27,34 +30,18 @@ public class ErrorsForRooms : MonoBehaviour
     [HideInInspector]
     public int RoomNumber;
 
-    //All just for lighting, bro this sucks
-    [SerializeField] private int _smoothing = 5;
-    [SerializeField] private int _delay = 5;
-    [SerializeField] private float _duration = 5;
+    public float flickerIntenisty;
+    public float flickerPerSecond;
 
-    private float _maxIntensity;
-    private float _minIntensity;
-    private Queue<float> _smoothQueue;
-    private float _lastSum = 0;
-    private float _factor;
-    private Coroutine _flickerCoroutine;
-    private WaitForSeconds _seconds;
+    private float startingIntensity;
+    private float time;
     #endregion
-    public void Reset()
-    {
-        StopCoroutine(_flickerCoroutine);
-        _smoothQueue.Clear();
-        _lastSum = 0;
-    }
 
     // Start is called before the first frame update
     void Start()
     {
         ErrorTimer = 10;
-        _seconds = new WaitForSeconds(_delay);
-        _maxIntensity = _mapLights[^1].intensity;
-        _smoothQueue = new Queue<float>(_smoothing);
-        _flickerCoroutine = StartCoroutine(Flicker());
+        startingIntensity = errorLight.intensity;
     }
 
     // Update is called once per frame
@@ -103,38 +90,26 @@ public class ErrorsForRooms : MonoBehaviour
             //When the timer hits below zero then it will roll some dice to see if it will error out
             if (ErrorTimer <= 0 )
             {
-                _mapLights[^1].enabled = true;
+                errorLight.enabled = true;
                 MakingRoomErrors();
                 return;
             }
+
+            if(IsThereError)
+            {
+                float broski = 1;
+
+                if (isMontiorOn)
+                {
+                    _mapLights[RoomNumber].gameObject.SetActive(true);
+                }
+                flickerPerSecond = _mapLights.Count(item => item.gameObject.activeSelf);
+                time += Time.deltaTime * (1 + Random.Range(0, broski)) * Mathf.PI;
+                errorLight.intensity = startingIntensity + Mathf.Sin(time * flickerPerSecond) * flickerIntenisty;
+
+            }
         }
     }
-
-    #region Lighting
-    private void DoFlicker()
-    {
-        if (_mapLights == null)
-            return;
-        while(_smoothQueue.Count >= _smoothing)
-        {
-
-        }
-    }
-
-    private IEnumerator Flicker()
-    {
-        float t = 0.0f;
-        yield return _seconds;
-        while (t<_duration)
-        {
-            DoFlicker();
-            t += Time.deltaTime;
-            yield return null;
-        }
-        _flickerCoroutine = StartCoroutine(Flicker());
-    }
-
-    #endregion
 
     #region Interact Calls
     private void PuzzleDebuggerInteract()
@@ -142,12 +117,13 @@ public class ErrorsForRooms : MonoBehaviour
         if (IsThereError)
         {
             IsThereError = false;
+            errorLight.enabled = false;
             Debug.Log("Error resolved");
             foreach(Light2D blur in _mapLights)
             {
-                if(blur.enabled)
+                if(blur.gameObject.activeSelf)
                 {
-                    blur.enabled = false;
+                    blur.gameObject.SetActive(false);
                 }
             }
         }
@@ -159,7 +135,7 @@ public class ErrorsForRooms : MonoBehaviour
         isMontiorOn = false;
         Lamp.SetActive(true);
         if (IsThereError)
-            _mapLights[^1].enabled = true;
+            errorLight.enabled = true;
     }
 
     private void MonitorInteract()
@@ -170,12 +146,7 @@ public class ErrorsForRooms : MonoBehaviour
         MapLayout.SetActive(true);
         isMontiorOn = true;
         Lamp.SetActive(false);
-        _mapLights[^1].enabled = false;
-
-        if (IsThereError)
-            _mapLights[RoomNumber].gameObject.SetActive(true);
-        else
-            _mapLights[RoomNumber].gameObject.SetActive(false);
+        errorLight.enabled = false;
     }
     #endregion
 
@@ -209,6 +180,7 @@ public class ErrorsForRooms : MonoBehaviour
         RoomError = _rooms[error].ToString(); //Just Debugging to see and make sure it is hitting the right room 
         IsThereError = true; //Bool that an error is happening, simplest part to understand i hope
         RoomNumber = error; // The indiactor of what room it is
+        _mapLights[RoomNumber].gameObject.SetActive(true);
 
         #endregion
 
