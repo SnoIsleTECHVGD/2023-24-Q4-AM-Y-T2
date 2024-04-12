@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 
 public class TargetCode : MonoBehaviour
@@ -143,7 +144,7 @@ public class TargetCode : MonoBehaviour
             Invoke(nameof(DeathState), 0.0f);
         }
 
-        if(WinTimer <= 0.0f)
+        if(WinTimer <= 0.0f || Input.GetKeyDown(KeyCode.W))
         {
 
             Debug.Log("You Win!");
@@ -161,8 +162,18 @@ public class TargetCode : MonoBehaviour
 
         }
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("MainScene");
+
+
+        }
+
+       
+
     }
 
+    
 
     void DeathState()
     {

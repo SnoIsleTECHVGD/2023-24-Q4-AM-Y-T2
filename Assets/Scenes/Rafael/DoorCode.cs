@@ -99,7 +99,7 @@ public class DoorCode : MonoBehaviour
 
 
             }
-            else
+            else 
             {
 
                 leftentry.GetComponent<BoxCollider2D>().enabled = true;
