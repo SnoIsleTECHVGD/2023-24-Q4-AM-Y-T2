@@ -35,7 +35,7 @@ public class MoveCam : MonoBehaviour
         FadeAnim.Play("FadeIn");
         Invoke(nameof(MoveRooms), transitiontime);
         GetComponent<BoxCollider2D>().enabled = false;
-
+        clicked = true;
 
 
     }
@@ -44,7 +44,7 @@ public class MoveCam : MonoBehaviour
     {
 
 
-       clicked = false;
+       
         Cam.transform.position = new Vector3(Xcoord, Ycoord, -100.0f);
         Invoke(nameof(DisableAnim), 0.3f);
         Isfading = true;
@@ -56,13 +56,19 @@ public class MoveCam : MonoBehaviour
        
         FadeAnim.enabled = false;
         Isfading= false;
-        
+        clicked = false;
 
     }
 
     private void Update()
     {
+        if(GetComponent<BoxCollider2D>().enabled == false && !clicked)
+        {
 
+            GetComponent<BoxCollider2D>().enabled = true;
+
+
+        }
         //if (clicked)
         //{
         //    delaytimer -= Time.deltaTime;
@@ -97,6 +103,8 @@ public class MoveCam : MonoBehaviour
 
 
     }
+
+   
 
 
     //IEnumerator FadeOut()
