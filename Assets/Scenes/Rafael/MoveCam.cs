@@ -30,12 +30,11 @@ public class MoveCam : MonoBehaviour
 
         Xcoord = destination.transform.position.x;
         Ycoord = destination.transform.position.y;
-        clicked = true;
         Cam = Camera.main;
         FadeAnim.enabled = true;
         FadeAnim.Play("FadeIn");
         Invoke(nameof(MoveRooms), transitiontime);
-
+        GetComponent<BoxCollider2D>().enabled = false;
 
 
 
@@ -45,18 +44,19 @@ public class MoveCam : MonoBehaviour
     {
 
 
-
+       clicked = false;
         Cam.transform.position = new Vector3(Xcoord, Ycoord, -100.0f);
-        Invoke(nameof(DisableAnim), 0.7f);
+        Invoke(nameof(DisableAnim), 0.3f);
         Isfading = true;
+        GetComponent<BoxCollider2D>().enabled = true;
     }
 
     void DisableAnim()
     {
-
+       
         FadeAnim.enabled = false;
         Isfading= false;
-
+        
 
     }
 
@@ -94,18 +94,7 @@ public class MoveCam : MonoBehaviour
 
 
 
-        if (Isfading)
-        {
 
-            GetComponent<BoxCollider2D>().enabled = false;
-
-        }
-        else
-        {
-
-            GetComponent<BoxCollider2D>().enabled = true;
-
-        }
 
     }
 
