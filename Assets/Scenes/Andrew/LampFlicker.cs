@@ -14,7 +14,7 @@ public class LampFlicker : MonoBehaviour
 
     private void Start()
     {
-        random = Random.Range(0.0f, 20f);
+        random = Random.Range(0.0f, 10f);
     }
 
     // Update is called once per frame
