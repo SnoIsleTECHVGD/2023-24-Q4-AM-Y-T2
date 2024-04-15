@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/JJ Scene/Test Scene 1.unity
     guid: c0c875da4c1697445a05fcbf0edb81ad
   - enabled: 1
+    path: Assets/Scenes/Thomas/Menu.unity
+    guid: a868cf7a8c8be1d46b272ec050705ed6
+  - enabled: 1
     path: Assets/Scenes/MainSceneFolder/MainScene.unity
     guid: e63bfa51154080c4783d9530941dd365
   - enabled: 0
