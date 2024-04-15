@@ -58,8 +58,8 @@ public class ErrorsForRooms : MonoBehaviour
             {
                 if(EventSystem.current.IsPointerOverGameObject()) 
                 {
-                    Debug.Log("Ahhh we hit smth else but what is smth else.");
-                    return;
+                    Debug.Log("Nah, i dont want to work.");
+                    //return;
                 }
 
                 Debug.Log("We actaully hit: " + hit.transform.name);
@@ -105,7 +105,7 @@ public class ErrorsForRooms : MonoBehaviour
                 }
                 flickerPerSecond = _mapLights.Count(item => item.gameObject.activeSelf);
                 time += Time.deltaTime * (1 + Random.Range(0, broski)) * Mathf.PI;
-                errorLight.intensity = startingIntensity + Mathf.Sin(time * flickerPerSecond) * flickerIntenisty;
+                errorLight.intensity = startingIntensity + (Mathf.Sin(time * flickerPerSecond) + 1) * flickerIntenisty;
 
             }
         }
