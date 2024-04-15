@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject PipesHolder;
     public GameObject[] Pipes;
+    public bool IsPuzzleDone;
 
     [SerializeField]
     int totalPipes = 0;
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        IsPuzzleDone = false;
+
         totalPipes = PipesHolder.transform.childCount;
 
         Pipes = new GameObject[totalPipes];
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour
 
         if(correctedPipes == totalPipes)
         {
+            IsPuzzleDone = true;
             Debug.Log("You Win!");
         }
     }

@@ -14,7 +14,7 @@ public class ErrorsForRooms : MonoBehaviour
 
     public Light2D[] _mapLights; //Lights for each room for when an error occurs there
     public Light2D errorLight;
-
+    public GameObject[] _puzzles;
 
     [SerializeField]
     private GameObject[] _rooms; //Creates an array that allows for any # of rooms
@@ -35,6 +35,8 @@ public class ErrorsForRooms : MonoBehaviour
 
     private float startingIntensity;
     private float time;
+
+    private GameManager gm;
     #endregion
 
     // Start is called before the first frame update
@@ -106,7 +108,17 @@ public class ErrorsForRooms : MonoBehaviour
                 flickerPerSecond = _mapLights.Count(item => item.gameObject.activeSelf);
                 time += Time.deltaTime * (1 + Random.Range(0, broski)) * Mathf.PI;
                 errorLight.intensity = startingIntensity + (Mathf.Sin(time * flickerPerSecond) + 1) * flickerIntenisty;
-
+            }
+            if(Input.GetKeyDown(KeyCode.S))
+            {
+                errorLight.enabled = false;
+                foreach (Light2D blur in _mapLights)
+                {
+                    if (blur.gameObject.activeSelf)
+                    {
+                        blur.gameObject.SetActive(false);
+                    }
+                }
             }
         }
     }
@@ -153,23 +165,23 @@ public class ErrorsForRooms : MonoBehaviour
     void MakingRoomErrors()
     {
         #region Error Timer
-        ErrorTimer = 10;
+        ErrorTimer = 60;
 
         if(RunTime >= 45) //As time progress it will shorten the timer 
         {
-            ErrorTimer = 10;
+            ErrorTimer = 60;
             Debug.Log("10 second timer");
         }
 
         if(RunTime >= 80)
         {
-            ErrorTimer = 8;
+            ErrorTimer = 60;
             Debug.Log("Decreasing to 8 seconds");
         }
 
         if (RunTime >= 150) //Can add more if need be, or make it a large number
         {
-            ErrorTimer = 6;
+            ErrorTimer = 60;
             Debug.Log("Decreasing to 6 seconds");
         }
         #endregion
@@ -181,6 +193,7 @@ public class ErrorsForRooms : MonoBehaviour
         IsThereError = true; //Bool that an error is happening, simplest part to understand i hope
         RoomNumber = error; // The indiactor of what room it is
         _mapLights[RoomNumber].gameObject.SetActive(true);
+        _puzzles[RoomNumber].gameObject.SetActive(true);
 
         #endregion
 
