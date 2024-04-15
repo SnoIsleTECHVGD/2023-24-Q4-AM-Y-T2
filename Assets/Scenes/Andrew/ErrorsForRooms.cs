@@ -59,7 +59,7 @@ public class ErrorsForRooms : MonoBehaviour
                 if(EventSystem.current.IsPointerOverGameObject()) 
                 {
                     Debug.Log("Nah, i dont want to work.");
-                    return;
+                    //return;
                 }
 
                 Debug.Log("We actaully hit: " + hit.transform.name);
