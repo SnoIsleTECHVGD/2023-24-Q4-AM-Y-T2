@@ -101,7 +101,7 @@ public class TargetCode : MonoBehaviour
             GetComponent<NavMeshAgent>().speed = chasespeed;
             GetComponent<NavMeshAgent>().acceleration = 99999999f;
             GetComponent<SpriteRenderer>().enabled = false;
-            deathtimer = 20.0f;
+            deathtimer = deathtimer;
         }
 
 
