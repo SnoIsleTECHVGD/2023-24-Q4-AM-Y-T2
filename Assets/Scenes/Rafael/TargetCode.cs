@@ -32,7 +32,7 @@ public class TargetCode : MonoBehaviour
 
     private void Start()
     {
-        deathtimer = 5.0f;
+        deathtimer = 10.0f;
         GetComponent<SpriteRenderer>().enabled = false;
         IsDead = false;
         creatureanim = GetComponent<Animator>();
