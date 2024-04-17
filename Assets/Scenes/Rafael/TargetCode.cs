@@ -19,7 +19,7 @@ public class TargetCode : MonoBehaviour
     public bool MediumMode;
     public bool HardMode;
     public bool YouWon;
-
+    bool Spotted;
     public float Xcoord;
     public float Ycoord;
     private Animator creatureanim;
@@ -32,7 +32,7 @@ public class TargetCode : MonoBehaviour
 
     private void Start()
     {
-        deathtimer = 10.0f;
+        deathtimer = 6.0f;
         GetComponent<SpriteRenderer>().enabled = false;
         IsDead = false;
         creatureanim = GetComponent<Animator>();
@@ -71,6 +71,7 @@ public class TargetCode : MonoBehaviour
         
         if (other.gameObject.CompareTag("Player"))
         {
+            Spotted = true;
             GetComponent<SpriteRenderer>().enabled = true;
             GetComponent<NavMeshAgent>().speed = 0;
             
@@ -97,11 +98,11 @@ public class TargetCode : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            timer -= Time.deltaTime;
+            Spotted = false;
             GetComponent<NavMeshAgent>().speed = chasespeed;
             GetComponent<NavMeshAgent>().acceleration = 99999999f;
             GetComponent<SpriteRenderer>().enabled = false;
-            deathtimer = deathtimer;
+           
         }
 
 
@@ -131,9 +132,11 @@ public class TargetCode : MonoBehaviour
             GetComponent<UnityPatrol>().enabled = true;
             GetComponent<Followplayer>().enabled = false;
             timer = 0.0f;
-
+            Invoke(nameof(DeathRecover), 0.3f);
 
         }
+
+       
 
 
         if(deathtimer <= 0.0f)
@@ -142,6 +145,13 @@ public class TargetCode : MonoBehaviour
             IsDead = true;
             creatureanim.enabled = true;
             Invoke(nameof(DeathState), 0.0f);
+        }
+
+        if(deathtimer >= 6.0f)
+        {
+
+            deathtimer = 6.0f;
+
         }
 
         if(WinTimer <= 0.0f || Input.GetKeyDown(KeyCode.W))
@@ -173,7 +183,13 @@ public class TargetCode : MonoBehaviour
 
     }
 
-    
+    void DeathRecover()
+    {
+        deathtimer += Time.deltaTime;
+
+
+
+    }
 
     void DeathState()
     {
