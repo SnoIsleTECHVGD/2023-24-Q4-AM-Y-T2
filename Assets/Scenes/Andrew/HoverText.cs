@@ -22,6 +22,13 @@ public class HoverText : MonoBehaviour
 
         Collider2D hit = Physics2D.OverlapPoint(touchPos);
 
-        hoverText = hit.transform.name;
+        hoverText = hit.transform.gameObject.name;
+
+        if (hit.transform.gameObject.tag == "Doorways")
+        {
+            isHovering = true;
+            
+        }
+     
     }
 }
