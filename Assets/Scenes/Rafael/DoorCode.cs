@@ -134,11 +134,8 @@ public class DoorCode : MonoBehaviour
             Invoke(nameof(LeftGlitch), Random.Range(10.0f, 40.0f));
 
         }
-        else
-        {
-
-            GlitchedOutLeft = false;
-        }
+       
+       
 
         if (rightdoorclosed)
         {
@@ -147,11 +144,9 @@ public class DoorCode : MonoBehaviour
 
 
         }
-        else
-        {
-
-            GlitchedOutRight = false;
-        }
+       
+       
+       
 
         //RaycastHit leftentryhit;
         //if (Physics.Raycast(transform.position, transform.right, out leftentryhit, 10f, Entry))
@@ -188,16 +183,73 @@ public class DoorCode : MonoBehaviour
 
         }
 
+        if (rightdoorclosed)
+        {
 
+            rightdoor.GetComponent<NavMeshObstacle>().enabled = true;
+
+
+        }
+        else
+        {
+
+            rightdoor.GetComponent<NavMeshObstacle>().enabled = false;
+
+        }
+
+
+        if (leftdoorclosed)
+        {
+
+            leftdoor.GetComponent<NavMeshObstacle>().enabled = true;
+
+
+        }
+        else
+        {
+
+            leftdoor.GetComponent<NavMeshObstacle>().enabled = false;
+
+        }
+
+
+
+        if (GlitchedOutLeft)
+        {
+
+            leftdoorclosed = false;
+            GlitchedOutLeft = false;
+            CancelInvoke(nameof(LeftGlitch));
+            return;
+        }
+      
+       
+
+        if (GlitchedOutRight)
+        {
+
+            rightdoorclosed = false;
+            GlitchedOutRight = false;
+            CancelInvoke(nameof(RightGlitch));
+            return;
+        }
+       
+       
+        if (GlitchedOutLeft ||GlitchedOutRight)
+        {
+
+            
+
+        }
 
     }
 
     //Closes and opens left/right door depending on it's current status and whether or not its glitching
     bool RightDoorClosed()
     {
-        if (rightdoor.GetComponent<NavMeshObstacle>().enabled == true || GlitchedOutRight) 
+        if (rightdoorclosed) 
         {
-            rightdoor.GetComponent<NavMeshObstacle>().enabled = false;
+            //rightdoor.GetComponent<NavMeshObstacle>().enabled = false;
             return (false);
 
 
@@ -208,7 +260,7 @@ public class DoorCode : MonoBehaviour
         else
         {
 
-            rightdoor.GetComponent<NavMeshObstacle>().enabled = true;
+            //rightdoor.GetComponent<NavMeshObstacle>().enabled = true;
             return (true);
 
         }
@@ -222,9 +274,9 @@ public class DoorCode : MonoBehaviour
 
     bool LeftDoorClosed()
     {
-        if (leftdoor.GetComponent<NavMeshObstacle>().enabled == true || GlitchedOutLeft)
+        if (leftdoorclosed)
         {
-            leftdoor.GetComponent<NavMeshObstacle>().enabled = false;
+            //leftdoor.GetComponent<NavMeshObstacle>().enabled = false;
             return (false);
 
 
@@ -235,7 +287,7 @@ public class DoorCode : MonoBehaviour
         else
         {
 
-            leftdoor.GetComponent<NavMeshObstacle>().enabled = true;
+            //leftdoor.GetComponent<NavMeshObstacle>().enabled = true;
             return (true);
             
         }
@@ -249,19 +301,25 @@ public class DoorCode : MonoBehaviour
     void LeftGlitch()
     {
 
+
+       
+        
+
         GlitchedOutLeft = true;
+       
+       
+    }
 
+    
 
+    void RightGlitch()
+    {
+
+       
+
+        GlitchedOutRight = true;
+       
 
     }
     
-
-   void RightGlitch()
-    {
-
-
-        GlitchedOutRight = true;
-
-    }
-
 }
