@@ -22,7 +22,7 @@ public class DoorCode : MonoBehaviour
 
     private void Update()
     {
-
+        //Raycasts to tell which door is which and what the code can do
         transform.position = new Vector3(Playerpos.transform.position.x, Playerpos.transform.position.y, 0.0f);
         
         RaycastHit2D rightentryhit = Physics2D.Raycast(transform.position, Vector2.right, Entry);
@@ -127,6 +127,7 @@ public class DoorCode : MonoBehaviour
 
         }
 
+        //IF the door is closed, wait a certain amount of time to open them
         if (leftdoorclosed)
         {
 
@@ -175,6 +176,8 @@ public class DoorCode : MonoBehaviour
 
         //}
 
+        //If you move rooms, doors update based on the room you're in
+
         if (Player.GetComponent<Animator>().enabled == true)
         {
             leftdoor = null;
@@ -189,6 +192,7 @@ public class DoorCode : MonoBehaviour
 
     }
 
+    //Closes and opens left/right door depending on it's current status and whether or not its glitching
     bool RightDoorClosed()
     {
         if (rightdoor.GetComponent<NavMeshObstacle>().enabled == true || GlitchedOutRight) 
@@ -241,6 +245,7 @@ public class DoorCode : MonoBehaviour
 
     }
 
+    //determines if the doors will glitch and open up
     void LeftGlitch()
     {
 
