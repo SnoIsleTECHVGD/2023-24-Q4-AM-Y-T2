@@ -20,6 +20,9 @@ public class DoorCode : MonoBehaviour
     public bool GlitchedOutRight;
     public GameObject Playerpos;
 
+    public float glitchleft;
+    public float glitchright;
+
     private void Update()
     {
         //Raycasts to tell which door is which and what the code can do
@@ -130,8 +133,8 @@ public class DoorCode : MonoBehaviour
         //IF the door is closed, wait a certain amount of time to open them
         if (leftdoorclosed)
         {
-
-            Invoke(nameof(LeftGlitch), Random.Range(10.0f, 40.0f));
+            float jedd = Random.Range(6.0f, 40f);
+            Invoke(nameof(LeftGlitch), jedd);
 
         }
        
@@ -139,8 +142,8 @@ public class DoorCode : MonoBehaviour
 
         if (rightdoorclosed)
         {
-
-            Invoke(nameof(RightGlitch), Random.Range(10.0f, 40.0f));
+            float otherjedd = Random.Range(6.0f, 40f);
+            Invoke(nameof(RightGlitch), otherjedd);
 
 
         }
