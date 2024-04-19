@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Scripting.APIUpdating;
@@ -18,13 +19,23 @@ public class DoorCode : MonoBehaviour
     public bool rightdoorclosed;
     public bool GlitchedOutLeft;
     public bool GlitchedOutRight;
+    public float GlitchLeftRand;
+    public float GlitchLeftResult;
+    public float GlitchRightRand;
+    public float GlitchRightResult;
     public GameObject Playerpos;
 
-    public float glitchleft;
-    public float glitchright;
+    public float glitchtime;
 
     private void Update()
     {
+
+        GlitchLeftRand = Random.Range(10f, 40f) * 1.25f;
+        GlitchLeftResult = GlitchLeftRand;
+
+        GlitchRightRand = Random.Range(10f, 41f) * 1.26f;
+        GlitchRightResult = GlitchRightRand;
+
         //Raycasts to tell which door is which and what the code can do
         transform.position = new Vector3(Playerpos.transform.position.x, Playerpos.transform.position.y, 0.0f);
         
@@ -134,7 +145,7 @@ public class DoorCode : MonoBehaviour
         if (leftdoorclosed)
         {
             float jedd = Random.Range(6.0f, 40f);
-            Invoke(nameof(LeftGlitch), jedd);
+            Invoke(nameof(LeftGlitch), GlitchLeftResult);
 
         }
        
@@ -143,7 +154,7 @@ public class DoorCode : MonoBehaviour
         if (rightdoorclosed)
         {
             float otherjedd = Random.Range(6.0f, 40f);
-            Invoke(nameof(RightGlitch), otherjedd);
+            Invoke(nameof(RightGlitch), GlitchRightResult);
 
 
         }

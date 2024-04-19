@@ -13,7 +13,7 @@ public class MoveCam : MonoBehaviour
     public GameObject destination;
     public float delaytimer;
     public bool clicked;
-    static bool Isfading;
+    //static bool Isfading;
     public GameObject Blackoutsquare;
     private Animator FadeAnim;
     public float transitiontime;
@@ -47,7 +47,7 @@ public class MoveCam : MonoBehaviour
        
         Cam.transform.position = new Vector3(Xcoord, Ycoord, -100.0f);
         Invoke(nameof(DisableAnim), 0.3f);
-        Isfading = true;
+        //Isfading = true;
         GetComponent<BoxCollider2D>().enabled = true;
     }
 
@@ -55,7 +55,7 @@ public class MoveCam : MonoBehaviour
     {
        
         FadeAnim.enabled = false;
-        Isfading= false;
+        //Isfading= false;
         clicked = false;
 
     }
