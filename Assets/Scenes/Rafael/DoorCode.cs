@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Scripting.APIUpdating;
@@ -7,24 +8,67 @@ using UnityEngine.Scripting.APIUpdating;
 public class DoorCode : MonoBehaviour
 {
     // Start is called before the first frame update
-    public LayerMask Door;
-    public LayerMask Entry;
-    public GameObject leftdoor;
-    public GameObject rightdoor;
-    public GameObject leftentry;
-    public GameObject rightentry;
-    public GameObject Player;
-    public bool leftdoorclosed;
-    public bool rightdoorclosed;
-    public bool GlitchedOutLeft;
-    public bool GlitchedOutRight;
-    public GameObject Playerpos;
+    public LayerMask Door, Entry;
+    public GameObject leftdoor, rightdoor, leftentry, rightentry, Playerpos, Player;
+    public bool leftdoorclosed, rightdoorclosed, GlitchedOutLeft, GlitchedOutRight, GlitchSetLeft = false, GlitchSetRight = false;
+    public float GlitchRand, GlitchResult, rightglitchtime,leftglitchtime,glitchstore;
 
-    public float glitchleft;
-    public float glitchright;
+    //public void RandomizeValues()
+    //{
 
+    //    GlitchRand = Random.Range(10f, 40f);
+        
+    //    if(GlitchSetRight == false)
+    //    {
+
+    //        glitchstore = GlitchRand;
+    //        if (glitchstore == GlitchRand)
+    //        {
+
+
+    //            RandomizeValues();
+
+    //        }
+    //        else
+    //        {
+
+                
+    //            rightglitchtime = GlitchRand;
+    //        }
+           
+
+
+    //    }
+
+
+    //    if (GlitchSetLeft == false)
+    //    {
+
+    //        glitchstore = GlitchRand;
+    //        if (glitchstore == GlitchRand)
+    //        {
+
+
+    //            RandomizeValues();
+
+    //        }
+    //        else
+    //        {
+
+
+    //            leftglitchtime = GlitchRand;
+    //        }
+
+
+
+    //    }
+
+    //}
     private void Update()
     {
+
+        GlitchRand = Random.Range(10f, 40f);
+
         //Raycasts to tell which door is which and what the code can do
         transform.position = new Vector3(Playerpos.transform.position.x, Playerpos.transform.position.y, 0.0f);
         
@@ -133,8 +177,9 @@ public class DoorCode : MonoBehaviour
         //IF the door is closed, wait a certain amount of time to open them
         if (leftdoorclosed)
         {
-            float jedd = Random.Range(6.0f, 40f);
-            Invoke(nameof(LeftGlitch), jedd);
+            //RandomizeValues();
+            leftglitchtime = GlitchRand;
+            Invoke(nameof(LeftGlitch), leftglitchtime);
 
         }
        
@@ -142,8 +187,9 @@ public class DoorCode : MonoBehaviour
 
         if (rightdoorclosed)
         {
-            float otherjedd = Random.Range(6.0f, 40f);
-            Invoke(nameof(RightGlitch), otherjedd);
+            //RandomizeValues();
+            rightglitchtime = GlitchRand*1.1f;
+            Invoke(nameof(RightGlitch), rightglitchtime);
 
 
         }
@@ -238,12 +284,7 @@ public class DoorCode : MonoBehaviour
         }
        
        
-        if (GlitchedOutLeft ||GlitchedOutRight)
-        {
-
-            
-
-        }
+       
 
     }
 

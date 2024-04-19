@@ -19,7 +19,7 @@ public class TargetCode : MonoBehaviour
     public bool MediumMode;
     public bool HardMode;
     public bool YouWon;
-    bool Spotted;
+    //bool Spotted;
     public float Xcoord;
     public float Ycoord;
     private Animator creatureanim;
@@ -71,7 +71,7 @@ public class TargetCode : MonoBehaviour
         
         if (other.gameObject.CompareTag("Player"))
         {
-            Spotted = true;
+            //Spotted = true;
             GetComponent<SpriteRenderer>().enabled = true;
             GetComponent<NavMeshAgent>().speed = 0;
             
@@ -98,7 +98,7 @@ public class TargetCode : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Spotted = false;
+            //Spotted = false;
             GetComponent<NavMeshAgent>().speed = chasespeed;
             GetComponent<NavMeshAgent>().acceleration = 99999999f;
             GetComponent<SpriteRenderer>().enabled = false;
