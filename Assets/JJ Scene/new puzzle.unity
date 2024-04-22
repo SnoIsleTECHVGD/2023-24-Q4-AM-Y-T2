@@ -153,7 +153,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxPrefab: {fileID: 1167601095022258081, guid: 9e2759e588ca75c4faf7d2339ee35365, type: 3}
-  sprites: []
+  sprites:
+  - {fileID: -1579037303, guid: d5ec7e44ef3c5ce49a6eb03734379709, type: 3}
+  - {fileID: -763001974, guid: d5ec7e44ef3c5ce49a6eb03734379709, type: 3}
+  - {fileID: 1555516118, guid: d5ec7e44ef3c5ce49a6eb03734379709, type: 3}
+  - {fileID: 614996695, guid: d5ec7e44ef3c5ce49a6eb03734379709, type: 3}
+  - {fileID: 803376217, guid: d5ec7e44ef3c5ce49a6eb03734379709, type: 3}
+  - {fileID: 1164192405, guid: d5ec7e44ef3c5ce49a6eb03734379709, type: 3}
+  - {fileID: -681382215, guid: d5ec7e44ef3c5ce49a6eb03734379709, type: 3}
+  - {fileID: -249444421, guid: d5ec7e44ef3c5ce49a6eb03734379709, type: 3}
+  - {fileID: -143449250, guid: d5ec7e44ef3c5ce49a6eb03734379709, type: 3}
+  - {fileID: 129425449, guid: d5ec7e44ef3c5ce49a6eb03734379709, type: 3}
+  - {fileID: 0}
 --- !u!4 &580056911
 Transform:
   m_ObjectHideFlags: 0
@@ -162,7 +173,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580056909}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -45.705715, y: -25.93, z: 0.023986312}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -180,6 +191,7 @@ GameObject:
   - component: {fileID: 1906656364}
   - component: {fileID: 1906656363}
   - component: {fileID: 1906656362}
+  - component: {fileID: 1906656365}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -253,3 +265,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1906656365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906656361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
