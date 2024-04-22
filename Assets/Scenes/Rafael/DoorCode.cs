@@ -11,63 +11,65 @@ public class DoorCode : MonoBehaviour
     public LayerMask Door, Entry;
     public GameObject leftdoor, rightdoor, leftentry, rightentry, Playerpos, Player;
     public bool leftdoorclosed, rightdoorclosed, GlitchedOutLeft, GlitchedOutRight, GlitchSetLeft = false, GlitchSetRight = false;
-    public float GlitchRand, GlitchResult, rightglitchtime,leftglitchtime,glitchstore;
+    public float GlitchRandLeft,GlitchRandRight, GlitchResult, rightglitchtime,leftglitchtime,glitchstore;
 
-    //public void RandomizeValues()
-    //{
+    public void RandomizeValues()
+    {
 
-    //    GlitchRand = Random.Range(10f, 40f);
-        
-    //    if(GlitchSetRight == false)
-    //    {
+        GlitchRandLeft = Random.Range(10f, 40f);
 
-    //        glitchstore = GlitchRand;
-    //        if (glitchstore == GlitchRand)
-    //        {
+        GlitchRandRight = Random.Range(5f, 20f) * 2;
 
+        //    if(GlitchSetRight == false)
+        //    {
 
-    //            RandomizeValues();
-
-    //        }
-    //        else
-    //        {
-
-                
-    //            rightglitchtime = GlitchRand;
-    //        }
-           
+        //        glitchstore = GlitchRand;
+        //        if (glitchstore == GlitchRand)
+        //        {
 
 
-    //    }
+        //            RandomizeValues();
+
+        //        }
+        //        else
+        //        {
 
 
-    //    if (GlitchSetLeft == false)
-    //    {
-
-    //        glitchstore = GlitchRand;
-    //        if (glitchstore == GlitchRand)
-    //        {
-
-
-    //            RandomizeValues();
-
-    //        }
-    //        else
-    //        {
-
-
-    //            leftglitchtime = GlitchRand;
-    //        }
+        //            rightglitchtime = GlitchRand;
+        //        }
 
 
 
-    //    }
+        //    }
 
-    //}
+
+        //    if (GlitchSetLeft == false)
+        //    {
+
+        //        glitchstore = GlitchRand;
+        //        if (glitchstore == GlitchRand)
+        //        {
+
+
+        //            RandomizeValues();
+
+        //        }
+        //        else
+        //        {
+
+
+        //            leftglitchtime = GlitchRand;
+        //        }
+
+
+
+        //    }
+
+    }
     private void Update()
     {
 
-        GlitchRand = Random.Range(10f, 40f);
+        //GlitchRand = Random.Range(10f, 40f);
 
         //Raycasts to tell which door is which and what the code can do
         transform.position = new Vector3(Playerpos.transform.position.x, Playerpos.transform.position.y, 0.0f);
@@ -178,17 +180,23 @@ public class DoorCode : MonoBehaviour
         if (leftdoorclosed)
         {
             //RandomizeValues();
-            leftglitchtime = GlitchRand;
+            leftglitchtime = GlitchRandLeft;
             Invoke(nameof(LeftGlitch), leftglitchtime);
 
         }
-       
-       
+
+        if (leftdoorclosed && Input.GetKeyDown(KeyCode.Q) || rightdoorclosed && Input.GetKeyDown(KeyCode.E))
+        {
+            RandomizeValues();
+            CancelInvoke(nameof(RandomizeValues));
+
+        }
+
 
         if (rightdoorclosed)
         {
             //RandomizeValues();
-            rightglitchtime = GlitchRand*1.1f;
+            rightglitchtime = GlitchRandRight;
             Invoke(nameof(RightGlitch), rightglitchtime);
 
 
