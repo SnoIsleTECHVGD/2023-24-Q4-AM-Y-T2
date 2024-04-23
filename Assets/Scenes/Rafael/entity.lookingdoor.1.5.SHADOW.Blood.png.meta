@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7067a1b5050979c478318a2a1479562a
+guid: 6277759d6c420de45b1962d60bf36d54
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -131,7 +131,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: entity.lookingdoor.1.SHADOW_0
+      name: entity.lookingdoor.1.5.SHADOW.Blood_0
       rect:
         serializedVersion: 2
         x: 523
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e7e6e23bb10b4e4db85a4ef55988a97
-      internalID: -266105396
+      spriteID: e193cb4d64b77954ba916dba3d5322b4
+      internalID: 2032097340
       vertices: []
       indices: 
       edges: []
@@ -162,7 +162,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      entity.lookingdoor.1.SHADOW_0: -266105396
+      entity.lookingdoor.1.5.SHADOW.Blood_0: 2032097340
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

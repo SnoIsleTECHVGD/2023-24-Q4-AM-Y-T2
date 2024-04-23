@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
@@ -20,6 +21,8 @@ public class TargetCode : MonoBehaviour
     public bool HardMode;
     public bool YouWon;
     //bool Spotted;
+    public float Xplayer;
+    public float Xcreature;
     public float Xcoord;
     public float Ycoord;
     private Animator creatureanim;
@@ -37,6 +40,8 @@ public class TargetCode : MonoBehaviour
         IsDead = false;
         creatureanim = GetComponent<Animator>();
 
+        Xplayer = playercam.transform.position.x;
+        Xcreature = transform.position.x;
 
         if (EasyMode)
         {
@@ -88,7 +93,11 @@ public class TargetCode : MonoBehaviour
         {
             timer = 50.0f;
             deathtimer -= Time.deltaTime;
+
+           
         }
+
+       
 
 
     }
@@ -164,6 +173,18 @@ public class TargetCode : MonoBehaviour
 
         }
 
+        if(Xplayer > Xcreature)
+        {
+
+            GetComponent<SpriteRenderer>().flipX = true;
+
+        }
+        else
+        {
+
+            GetComponent<SpriteRenderer>().flipX = false;
+
+        }
 
         if (IsDead)
         {
