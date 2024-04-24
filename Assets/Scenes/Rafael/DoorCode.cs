@@ -9,9 +9,9 @@ public class DoorCode : MonoBehaviour
 {
     // Start is called before the first frame update
     public LayerMask Door, Entry;
-    public GameObject leftdoor, rightdoor, leftentry, rightentry, Playerpos, Player;
-    public bool leftdoorclosed, rightdoorclosed, GlitchedOutLeft, GlitchedOutRight, GlitchSetLeft = false, GlitchSetRight = false;
-    public float GlitchRandLeft,GlitchRandRight, GlitchResult, rightglitchtime,leftglitchtime,glitchstore;
+    public GameObject leftdoor, rightdoor,vent, leftentry, rightentry, Playerpos, Player;
+    public bool leftdoorclosed, rightdoorclosed,upclosed, GlitchedOutLeft, GlitchedOutRight, GLitchedOutUp, GlitchSetLeft = false, GlitchSetRight = false;
+    public float GlitchRandLeft,GlitchRandRight,GlitchRandUp, GlitchResult, rightglitchtime,leftglitchtime,upglitchtime,glitchstore;
 
     public void RandomizeValues()
     {
@@ -19,6 +19,8 @@ public class DoorCode : MonoBehaviour
         GlitchRandLeft = Random.Range(10f, 40f);
 
         GlitchRandRight = Random.Range(5f, 20f) * 2;
+
+        GlitchRandUp = Random.Range(2f, 8f) * 5;
 
         //    if(GlitchSetRight == false)
         //    {
@@ -176,6 +178,25 @@ public class DoorCode : MonoBehaviour
 
         }
 
+
+        RaycastHit uphit;
+        if (Physics.Raycast(transform.position, transform.up, out uphit, 10f, Door))
+        {
+            Debug.DrawRay(transform.position, transform.up * 10f, Color.red);
+
+            vent = uphit.collider.gameObject;
+
+            //if (Input.GetKeyDown(KeyCode.Q))
+            //{
+            //    leftdoorclosed = LeftDoorClosed();
+
+
+            //}
+
+
+        }
+
+
         //IF the door is closed, wait a certain amount of time to open them
         if (leftdoorclosed)
         {
@@ -185,7 +206,7 @@ public class DoorCode : MonoBehaviour
 
         }
 
-        if (leftdoorclosed && Input.GetKeyDown(KeyCode.Q) || rightdoorclosed && Input.GetKeyDown(KeyCode.E))
+        if (leftdoorclosed && Input.GetKeyDown(KeyCode.Q) || rightdoorclosed && Input.GetKeyDown(KeyCode.E)|| upclosed)
         {
             RandomizeValues();
             CancelInvoke(nameof(RandomizeValues));
@@ -202,6 +223,13 @@ public class DoorCode : MonoBehaviour
 
         }
        
+        if (upclosed) 
+        { 
+            upglitchtime = GlitchRandUp;
+            Invoke(nameof(UpGlitch), upglitchtime);
+
+
+        }
        
        
 
@@ -254,6 +282,19 @@ public class DoorCode : MonoBehaviour
 
         }
 
+        if (upclosed)
+        {
+
+            vent.GetComponent<NavMeshObstacle>().enabled = true;
+
+
+        }
+        else
+        {
+
+            vent.GetComponent <NavMeshObstacle>().enabled = false;
+
+        }
 
         if (leftdoorclosed)
         {
@@ -290,8 +331,17 @@ public class DoorCode : MonoBehaviour
             CancelInvoke(nameof(RightGlitch));
             return;
         }
-       
-       
+
+        if (GLitchedOutUp)
+        {
+
+            upclosed = false;
+            GLitchedOutUp = false;
+            CancelInvoke(nameof(UpGlitch));
+            return;
+
+
+        }
        
 
     }
@@ -322,7 +372,30 @@ public class DoorCode : MonoBehaviour
 
     }
 
+    bool VentClosed()
+    {
+        if (upclosed)
+        {
+            //rightdoor.GetComponent<NavMeshObstacle>().enabled = false;
+            return (false);
 
+
+
+
+
+        }
+        else
+        {
+
+            //rightdoor.GetComponent<NavMeshObstacle>().enabled = true;
+            return (true);
+
+        }
+
+
+
+
+    }
 
     bool LeftDoorClosed()
     {
@@ -362,6 +435,13 @@ public class DoorCode : MonoBehaviour
        
     }
 
+    void UpGlitch()
+    {
+
+        GLitchedOutUp = true;
+
+
+    }
     
 
     void RightGlitch()
