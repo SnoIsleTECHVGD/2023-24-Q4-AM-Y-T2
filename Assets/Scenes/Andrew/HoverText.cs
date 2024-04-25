@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HoverText : MonoBehaviour
 {
     public string hoverText;
-    public bool isHovering;
+    public Text Text;
+    public Image textBox;
 
     // Start is called before the first frame update
     void Start()
@@ -26,9 +27,11 @@ public class HoverText : MonoBehaviour
 
         if (hit.transform.gameObject.tag == "Doorways")
         {
-            isHovering = true;
-            
+            textBox.gameObject.SetActive(true);
+            Debug.LogWarning("WE DID SOMETHING CORRECT.");
+            Text.text = hoverText;
         }
-     
+        else
+            textBox.gameObject.SetActive(false);
     }
 }
