@@ -13,6 +13,7 @@ public class PuzzlePiece: MonoBehaviour
 
     public bool _placed;
     public bool _dragging;
+    public bool win;
 
     private Vector2 _offset, _originalPosition;
 
@@ -28,6 +29,7 @@ public class PuzzlePiece: MonoBehaviour
     private void Awake()
     {
         _originalPosition = transform.position;
+        win = false;
     }
 
     private void Update()
@@ -68,7 +70,7 @@ public class PuzzlePiece: MonoBehaviour
         }
         if (_placed == true)
         {
-            SceneManager.LoadScene("winsmile");
+            win = true;
         }
     }
 
