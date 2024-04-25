@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PuzzlePiece: MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _renderer;
 
-    [SerializeField] private AudioSource _source;
-    [SerializeField] private AudioClip _pickUpClip, _dropClip;
+    //[SerializeField] private AudioSource _source;
+    //[SerializeField] private AudioClip _pickUpClip, _dropClip;
 
-    private bool _dragging, _placed;
+    public bool _placed;
+    public bool _dragging;
 
     private Vector2 _offset, _originalPosition;
 
@@ -36,18 +39,20 @@ public class PuzzlePiece: MonoBehaviour
         var mousePosition = GetMousePos();
 
         transform.position = mousePosition - _offset;
+
+
     }
 
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         _dragging = true;
-        _source.PlayOneShot(_pickUpClip);
+        //_source.PlayOneShot(_pickUpClip);
 
         _offset = GetMousePos() - (Vector2)transform.position;
     }
 
-    private void OnMouseUp()
+    public void OnMouseUp()
     {
         if(Vector2.Distance(transform.position,_slot.transform.position) < 3)
         {
@@ -58,8 +63,12 @@ public class PuzzlePiece: MonoBehaviour
         else
         {
             transform.position = _originalPosition;
-            _source.PlayOneShot(_dropClip);
+           // _source.PlayOneShot(_dropClip);
             _dragging = false;
+        }
+        if (_placed == true)
+        {
+            SceneManager.LoadScene("winsmile");
         }
     }
 
@@ -67,4 +76,6 @@ public class PuzzlePiece: MonoBehaviour
     {
         return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
+
+    
 }
