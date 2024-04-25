@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
@@ -30,8 +31,9 @@ public class TargetCode : MonoBehaviour
     public float chasespeed = 8.0f;
     public float patrolspeed = 3.5f;
     public float waittime;
-    public GameObject win;
     public GameObject lose;
+    public Image WinFade;
+    private Animator WinAnim;
 
     private void Start()
     {
@@ -39,6 +41,7 @@ public class TargetCode : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = false;
         IsDead = false;
         creatureanim = GetComponent<Animator>();
+        WinAnim = WinFade.GetComponent<Animator>();
 
         Xplayer = playercam.transform.position.x;
         Xcreature = transform.position.x;
@@ -153,7 +156,7 @@ public class TargetCode : MonoBehaviour
             Debug.Log("You are dead");
             IsDead = true;
             creatureanim.enabled = true;
-            Invoke(nameof(DeathState), 0.0f);
+            Invoke(nameof(DeathState), 0.1f);
         }
 
         if(deathtimer >= 6.0f)
@@ -168,7 +171,11 @@ public class TargetCode : MonoBehaviour
 
             Debug.Log("You Win!");
             YouWon = true;
-            playercam.transform.position = new Vector3(win.transform.position.x, win.transform.position.y, -100);
+            WinAnim.enabled = true;
+            WinAnim.Play("WinFade");
+            Invoke(nameof(YouWinner), 1f);
+            //playercam.transform.position = new Vector3(win.transform.position.x, win.transform.position.y, -100);
+            
 
 
         }
@@ -221,6 +228,14 @@ public class TargetCode : MonoBehaviour
 
         transform.position = new Vector3(Xcoord, Ycoord, -99.0f);
         Invoke(nameof(TimeOutCorner), waittime);
+
+    }
+
+    void YouWinner()
+    {
+
+        SceneManager.LoadScene("winsmile");
+
 
     }
 
