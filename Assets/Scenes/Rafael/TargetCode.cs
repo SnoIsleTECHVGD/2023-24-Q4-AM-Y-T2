@@ -13,30 +13,15 @@ public class TargetCode : MonoBehaviour
 {
 
     
-    public float timer;
-    public float deathtimer;
-    public bool IsDead;
-    public float WinTimer;
-    public bool EasyMode;
-    public bool MediumMode;
-    public bool HardMode;
-    public bool YouWon;
-    //bool Spotted;
-    public float Xplayer;
-    public float Xcreature;
-    public float Xcoord;
-    public float Ycoord;
-    private Animator creatureanim;
-    public GameObject playercam;
-    public float chasespeed = 8.0f;
-    public float patrolspeed = 3.5f;
-    public float waittime;
-    public GameObject lose;
-    public Image WinFade;
-    private Animator WinAnim;
+    public float timer,deathtimer,WinTimer,Xplayer,Xcreature,Xcoord,Ycoord,chasespeed = 8.0f,patrolspeed = 3.5f, waittime;
+    public bool IsDead,EasyMode,MediumMode,HardMode,YouWon;
+    private Animator creatureanim,WinAnim;
+    public GameObject playercam,lose;
+    public Image WinFade,Dead;
 
     private void Start()
     {
+        Dead.enabled = false;
         deathtimer = 6.0f;
         GetComponent<SpriteRenderer>().enabled = false;
         IsDead = false;
@@ -224,7 +209,7 @@ public class TargetCode : MonoBehaviour
         
         Xcoord = playercam.transform.position.x;
         Ycoord = playercam.transform.position.y;
-
+        Dead.enabled = true;
 
         transform.position = new Vector3(Xcoord, Ycoord, -99.0f);
         Invoke(nameof(TimeOutCorner), waittime);
@@ -247,5 +232,5 @@ public class TargetCode : MonoBehaviour
 
     }
 
-
+    
 }
