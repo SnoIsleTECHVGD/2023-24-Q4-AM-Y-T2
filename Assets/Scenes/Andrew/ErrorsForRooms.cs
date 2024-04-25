@@ -96,7 +96,7 @@ public class ErrorsForRooms : MonoBehaviour
 
             if(IsThereError)
             {
-                float broski = 1;
+                float broski = 1; //Shhhhhhhh.....this isn't named poorly....
 
                 if (isMontiorOn)
                 {

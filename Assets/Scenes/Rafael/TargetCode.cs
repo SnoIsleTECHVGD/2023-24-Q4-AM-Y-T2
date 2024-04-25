@@ -168,7 +168,8 @@ public class TargetCode : MonoBehaviour
 
             Debug.Log("You Win!");
             YouWon = true;
-            playercam.transform.position = new Vector3(win.transform.position.x, win.transform.position.y, -100);
+            //playercam.transform.position = new Vector3(win.transform.position.x, win.transform.position.y, -100);
+            SceneManager.LoadScene("winsmile");
 
 
         }
