@@ -29,7 +29,7 @@ public class PuzzlePiece: MonoBehaviour
     private void Awake()
     {
         _originalPosition = transform.position;
-        win = false;
+       
     }
 
     private void Update()
@@ -42,6 +42,17 @@ public class PuzzlePiece: MonoBehaviour
 
         transform.position = mousePosition - _offset;
 
+        if (_slot.SlotIndex == 4)
+        {
+            win = true;
+
+        }
+        else
+        {
+
+            win = false;
+
+        }
 
     }
 
@@ -56,11 +67,11 @@ public class PuzzlePiece: MonoBehaviour
 
     public void OnMouseUp()
     {
-        if(Vector2.Distance(transform.position,_slot.transform.position) < 3)
+        if(Vector2.Distance(transform.position,_slot.transform.position) < 1.5)
         {
             transform.position = _slot.transform.position;
             _slot.Placed();
-            _placed = true;
+            //_placed = true;
         }
         else
         {
@@ -68,10 +79,10 @@ public class PuzzlePiece: MonoBehaviour
            // _source.PlayOneShot(_dropClip);
             _dragging = false;
         }
-        if (_placed == true)
-        {
-            win = true;
-        }
+        //if (_placed == true)
+        //{
+        //    win = true;
+        //}
     }
 
     Vector2 GetMousePos()

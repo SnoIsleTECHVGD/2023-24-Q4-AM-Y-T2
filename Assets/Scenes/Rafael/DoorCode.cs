@@ -10,9 +10,17 @@ public class DoorCode : MonoBehaviour
     // Start is called before the first frame update
     public LayerMask Door, Entry;
     public GameObject leftdoor, rightdoor,vent, leftentry, rightentry, Playerpos, Player;
-    public bool leftdoorclosed, rightdoorclosed,upclosed, GlitchedOutLeft, GlitchedOutRight, GLitchedOutUp, GlitchSetLeft = false, GlitchSetRight = false;
+    public bool leftdoorclosed, rightdoorclosed,upclosed = true, GlitchedOutLeft, GlitchedOutRight, GLitchedOutUp, GlitchSetLeft = false, GlitchSetRight = false,winonce;
     public float GlitchRandLeft,GlitchRandRight,GlitchRandUp, GlitchResult, rightglitchtime,leftglitchtime,upglitchtime,glitchstore;
+    private PuzzlePiece puzzlesolved;
+    private PuzzleSlot puzzlecount;
 
+    private void Start()
+    {
+
+        puzzlecount.SlotIndex = 4;
+
+    }
     public void RandomizeValues()
     {
 
@@ -20,7 +28,7 @@ public class DoorCode : MonoBehaviour
 
         GlitchRandRight = Random.Range(5f, 20f) * 2;
 
-        GlitchRandUp = Random.Range(2f, 8f) * 5;
+        GlitchRandUp = Random.Range(16f, 42f) * 2;
 
         //    if(GlitchSetRight == false)
         //    {
@@ -186,6 +194,12 @@ public class DoorCode : MonoBehaviour
 
             vent = uphit.collider.gameObject;
 
+            if (puzzlesolved.win == true)
+            {
+
+                upclosed = VentClosed();
+
+            }
             //if (Input.GetKeyDown(KeyCode.Q))
             //{
             //    leftdoorclosed = LeftDoorClosed();
@@ -206,7 +220,7 @@ public class DoorCode : MonoBehaviour
 
         }
 
-        if (leftdoorclosed && Input.GetKeyDown(KeyCode.Q) || rightdoorclosed && Input.GetKeyDown(KeyCode.E)|| upclosed)
+        if (leftdoorclosed && Input.GetKeyDown(KeyCode.Q) || rightdoorclosed && Input.GetKeyDown(KeyCode.E) || upclosed && winonce == true)
         {
             RandomizeValues();
             CancelInvoke(nameof(RandomizeValues));
@@ -231,7 +245,22 @@ public class DoorCode : MonoBehaviour
 
         }
        
-       
+
+        // For making the randomized script only happen once so the bool does not constantly generate random values
+       if(puzzlesolved.win == true)
+        {
+
+            WinOnce();
+            CancelInvoke(nameof(WinOnce));
+
+        }
+
+       if(winonce == true)
+        {
+
+            winonce = false;
+
+        }
 
         //RaycastHit leftentryhit;
         //if (Physics.Raycast(transform.position, transform.right, out leftentryhit, 10f, Entry))
@@ -437,7 +466,7 @@ public class DoorCode : MonoBehaviour
 
     void UpGlitch()
     {
-
+        puzzlecount.SlotIndex = 0;
         GLitchedOutUp = true;
 
 
@@ -451,6 +480,14 @@ public class DoorCode : MonoBehaviour
 
         GlitchedOutRight = true;
        
+
+    }
+
+    void WinOnce()
+    {
+
+        winonce = true;
+
 
     }
     
