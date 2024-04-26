@@ -28,7 +28,7 @@ public class DoorCode : MonoBehaviour
 
         GlitchRandRight = Random.Range(5f, 20f) * 2;
 
-        GlitchRandUp = Random.Range(16f, 42f) * 2;
+        //GlitchRandUp = Random.Range(16f, 42f) * 2;
 
         //    if(GlitchSetRight == false)
         //    {
@@ -194,12 +194,12 @@ public class DoorCode : MonoBehaviour
 
             vent = uphit.collider.gameObject;
 
-            if (puzzlesolved.win == true)
-            {
+            //if (puzzlesolved.win == true)
+            //{
 
-                upclosed = VentClosed();
+            //    upclosed = VentClosed();
 
-            }
+            //}
             //if (Input.GetKeyDown(KeyCode.Q))
             //{
             //    leftdoorclosed = LeftDoorClosed();
@@ -219,8 +219,8 @@ public class DoorCode : MonoBehaviour
             Invoke(nameof(LeftGlitch), leftglitchtime);
 
         }
-
-        if (leftdoorclosed && Input.GetKeyDown(KeyCode.Q) || rightdoorclosed && Input.GetKeyDown(KeyCode.E) || upclosed && winonce == true)
+        
+        if (leftdoorclosed && Input.GetKeyDown(KeyCode.Q) || rightdoorclosed && Input.GetKeyDown(KeyCode.E) /*|| upclosed && winonce == true*/)
         {
             RandomizeValues();
             CancelInvoke(nameof(RandomizeValues));
