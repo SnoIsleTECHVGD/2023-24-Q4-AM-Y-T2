@@ -1,17 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HoverText : MonoBehaviour
 {
     public string hoverText;
-    public bool isHovering;
+    public Text Text;
+    public Image textBox;
+
+    private Vector3 offset;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Text.text = hoverText;
     }
 
     // Update is called once per frame
@@ -22,13 +25,26 @@ public class HoverText : MonoBehaviour
 
         Collider2D hit = Physics2D.OverlapPoint(touchPos);
 
-        hoverText = hit.transform.gameObject.name;
-
-        if (hit.transform.gameObject.tag == "Doorways")
+        if (hit && hit.transform.gameObject.tag == "Doorways")
         {
-            isHovering = true;
-            
+            textBox.gameObject.SetActive(true);
+            Debug.LogWarning("WE DID SOMETHING CORRECT.");
+            hoverText = hit.transform.gameObject.name;
+            //Debug.Log(hit.transform.position);
+
+            //if(hit.transform.position.x > 0)
+            //{
+            //    offset = new Vector3(8, 0,0);
+            //}
+            //if(hit.transform.position.x < 0)
+            //{
+            //    offset = new Vector3(, 0,0);
+            //}
+
+
+            textBox.transform.position = hit.transform.position - offset;
         }
-     
+        if(!hit)
+            textBox.gameObject.SetActive(false);
     }
 }
