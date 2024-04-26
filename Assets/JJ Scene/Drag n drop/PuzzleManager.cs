@@ -8,10 +8,27 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField] private List<PuzzleSlot> _slotPrefabs;
     [SerializeField] private PuzzlePiece _piecePrefab;
     [SerializeField] private Transform _slotParent, _pieceParent;
+    GameObject slotchecker;
+    public int puzzlecounting;
 
     void Start()
     {
-        Spawn();
+        
+    }
+
+    private void Update()
+    {
+
+        slotchecker = GameObject.Find("Puzzle Slot 1(Clone)");
+
+        puzzlecounting = slotchecker.GetComponent<PuzzleSlot>().pubnumber;
+
+        if (puzzlecounting == 0)
+        {
+            Spawn();
+            CancelInvoke(nameof(Spawn));
+
+        }
     }
 
     void Spawn()

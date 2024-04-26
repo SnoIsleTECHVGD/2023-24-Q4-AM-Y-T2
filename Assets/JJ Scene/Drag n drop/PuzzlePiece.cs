@@ -42,17 +42,12 @@ public class PuzzlePiece: MonoBehaviour
 
         transform.position = mousePosition - _offset;
 
-        if (_slot.SlotIndex == 4)
-        {
-            win = true;
+        //if (_slot.SlotIndex == 4)
+        //{
+        //    win = true;
 
-        }
-        else
-        {
-
-            win = false;
-
-        }
+        //}
+      
 
     }
 
@@ -67,11 +62,11 @@ public class PuzzlePiece: MonoBehaviour
 
     public void OnMouseUp()
     {
-        if(Vector2.Distance(transform.position,_slot.transform.position) < 1.5)
+        if(Vector2.Distance(transform.position,_slot.transform.position) < 0.5)
         {
             transform.position = _slot.transform.position;
             _slot.Placed();
-            //_placed = true;
+            _placed = true;
         }
         else
         {

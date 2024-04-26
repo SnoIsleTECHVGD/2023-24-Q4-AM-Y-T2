@@ -12,13 +12,14 @@ public class DoorCode : MonoBehaviour
     public GameObject leftdoor, rightdoor,vent, leftentry, rightentry, Playerpos, Player;
     public bool leftdoorclosed, rightdoorclosed,upclosed = true, GlitchedOutLeft, GlitchedOutRight, GLitchedOutUp, GlitchSetLeft = false, GlitchSetRight = false,winonce;
     public float GlitchRandLeft,GlitchRandRight,GlitchRandUp, GlitchResult, rightglitchtime,leftglitchtime,upglitchtime,glitchstore;
-    private PuzzlePiece puzzlesolved;
-    private PuzzleSlot puzzlecount;
+    public int puzzlecounter;
+    GameObject puzzlecount;
 
     private void Start()
     {
 
-        puzzlecount.SlotIndex = 4;
+        //winonce = puzzlesolved.win;
+        
 
     }
     public void RandomizeValues()
@@ -28,57 +29,26 @@ public class DoorCode : MonoBehaviour
 
         GlitchRandRight = Random.Range(5f, 20f) * 2;
 
-        //GlitchRandUp = Random.Range(16f, 42f) * 2;
-
-        //    if(GlitchSetRight == false)
-        //    {
-
-        //        glitchstore = GlitchRand;
-        //        if (glitchstore == GlitchRand)
-        //        {
-
-
-        //            RandomizeValues();
-
-        //        }
-        //        else
-        //        {
-
-
-        //            rightglitchtime = GlitchRand;
-        //        }
-
-
-
-        //    }
-
-
-        //    if (GlitchSetLeft == false)
-        //    {
-
-        //        glitchstore = GlitchRand;
-        //        if (glitchstore == GlitchRand)
-        //        {
-
-
-        //            RandomizeValues();
-
-        //        }
-        //        else
-        //        {
-
-
-        //            leftglitchtime = GlitchRand;
-        //        }
-
-
-
-        //    }
+      
 
     }
+
+
+    //public void RandomizeValuesVent()
+    //{
+
+    //    GlitchRandUp = Random.Range(16f, 23f) * 3;
+       
+       
+
+
+
+    //}
     private void Update()
     {
+        //puzzlecount = GameObject.Find("Puzzle Slot 1(Clone)");
 
+        //puzzlecounter = puzzlecount.GetComponent<PuzzleSlot>().pubnumber;
         //GlitchRand = Random.Range(10f, 40f);
 
         //Raycasts to tell which door is which and what the code can do
@@ -194,22 +164,19 @@ public class DoorCode : MonoBehaviour
 
             vent = uphit.collider.gameObject;
 
-            //if (puzzlesolved.win == true)
-            //{
+           
 
-            //    upclosed = VentClosed();
-
-            //}
-            //if (Input.GetKeyDown(KeyCode.Q))
-            //{
-            //    leftdoorclosed = LeftDoorClosed();
-
-
-            //}
 
 
         }
 
+
+        if (puzzlecounter == 4)
+        {
+            upclosed = true;
+            //RandomizeValuesVent();
+
+        }
 
         //IF the door is closed, wait a certain amount of time to open them
         if (leftdoorclosed)
@@ -220,13 +187,14 @@ public class DoorCode : MonoBehaviour
 
         }
         
-        if (leftdoorclosed && Input.GetKeyDown(KeyCode.Q) || rightdoorclosed && Input.GetKeyDown(KeyCode.E) /*|| upclosed && winonce == true*/)
+        if (leftdoorclosed && Input.GetKeyDown(KeyCode.Q) || rightdoorclosed && Input.GetKeyDown(KeyCode.E))
         {
             RandomizeValues();
             CancelInvoke(nameof(RandomizeValues));
 
         }
 
+        
 
         if (rightdoorclosed)
         {
@@ -247,43 +215,22 @@ public class DoorCode : MonoBehaviour
        
 
         // For making the randomized script only happen once so the bool does not constantly generate random values
-       if(puzzlesolved.win == true)
-        {
+       //if(puzzlesolved.win == true)
+       // {
 
-            WinOnce();
-            CancelInvoke(nameof(WinOnce));
+       //     WinOnce();
+       //     CancelInvoke(nameof(WinOnce));
 
-        }
+       // }
 
-       if(winonce == true)
-        {
+       //if(winonce == true)
+       // {
 
-            winonce = false;
+       //     winonce = false;
 
-        }
+       // }
 
-        //RaycastHit leftentryhit;
-        //if (Physics.Raycast(transform.position, transform.right, out leftentryhit, 10f, Entry))
-        //{
-        //    Debug.DrawRay(transform.position, transform.right * 10f, Color.red);
-        //    leftentry = leftentryhit.collider.gameObject;
-
-        //    if (leftdoorclosed)
-        //    {
-        //        leftentry.GetComponent<BoxCollider2D>().enabled = false;
-
-
-
-        //    }
-        //    else
-        //    {
-
-        //        leftentry.GetComponent<BoxCollider2D>().enabled = true;
-
-        //    }
-
-
-        //}
+       
 
         //If you move rooms, doors update based on the room you're in
 
@@ -291,6 +238,7 @@ public class DoorCode : MonoBehaviour
         {
             leftdoor = null;
             rightdoor = null;
+            vent = null;
             //leftentry = null;
             //rightentry = null;
 
@@ -401,30 +349,30 @@ public class DoorCode : MonoBehaviour
 
     }
 
-    bool VentClosed()
-    {
-        if (upclosed)
-        {
-            //rightdoor.GetComponent<NavMeshObstacle>().enabled = false;
-            return (false);
+    //bool VentClosed()
+    //{
+    //    if (upclosed)
+    //    {
+    //        //rightdoor.GetComponent<NavMeshObstacle>().enabled = false;
+    //        return (false);
 
 
 
 
 
-        }
-        else
-        {
+    //    }
+    //    else
+    //    {
 
-            //rightdoor.GetComponent<NavMeshObstacle>().enabled = true;
-            return (true);
+    //        //rightdoor.GetComponent<NavMeshObstacle>().enabled = true;
+    //        return (true);
 
-        }
-
-
+    //    }
 
 
-    }
+
+
+    //}
 
     bool LeftDoorClosed()
     {
@@ -466,7 +414,7 @@ public class DoorCode : MonoBehaviour
 
     void UpGlitch()
     {
-        puzzlecount.SlotIndex = 0;
+        puzzlecounter = 0;
         GLitchedOutUp = true;
 
 
@@ -483,12 +431,12 @@ public class DoorCode : MonoBehaviour
 
     }
 
-    void WinOnce()
-    {
+    //void WinOnce()
+    //{
 
-        winonce = true;
+    //    winonce = true;
 
 
-    }
+    //}
     
 }
