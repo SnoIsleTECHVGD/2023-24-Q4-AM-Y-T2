@@ -6,15 +6,17 @@ using UnityEngine.UI;
 public class HoverText : MonoBehaviour
 {
     public string hoverText;
-    public Text Text;
-    public Image textBox;
+    private TMP_Text text;
+    private Image textBox;
+    public Image LeftextBox;
+    public Image RightextBox;
 
     private Vector3 offset;
 
     // Start is called before the first frame update
     void Start()
     {
-        Text.text = hoverText;
+        //Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -27,24 +29,30 @@ public class HoverText : MonoBehaviour
 
         if (hit && hit.transform.gameObject.tag == "Doorways")
         {
+            if (hit.transform.position.x > 0) //Left side door
+            {
+                textBox = LeftextBox;
+                text = textBox.GetComponentInChildren<TMP_Text>();
+            }
+            if (hit.transform.position.x < 0) //Right side door
+            {
+                textBox = RightextBox;
+                text = textBox.GetComponentInChildren<TMP_Text>();
+            }
+
             textBox.gameObject.SetActive(true);
             Debug.LogWarning("WE DID SOMETHING CORRECT.");
             hoverText = hit.transform.gameObject.name;
-            //Debug.Log(hit.transform.position);
-
-            //if(hit.transform.position.x > 0)
-            //{
-            //    offset = new Vector3(8, 0,0);
-            //}
-            //if(hit.transform.position.x < 0)
-            //{
-            //    offset = new Vector3(, 0,0);
-            //}
-
-
-            textBox.transform.position = hit.transform.position - offset;
+            Debug.Log(hoverText);
         }
         if(!hit)
             textBox.gameObject.SetActive(false);
+
+        text.text = hoverText;
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Break();
+        }
     }
 }
