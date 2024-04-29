@@ -5,8 +5,9 @@ using UnityEngine;
 public class PuzzleSlot : MonoBehaviour
 {
     public SpriteRenderer Renderer;
-    static int SolveNumber;
+    public static int SolveNumber;
     public int pubnumber;
+    public DoorCode doorscript;
 
     //[SerializeField] private AudioSource _source;
     //[SerializeField] private AudioClip _completeClip;
@@ -14,7 +15,8 @@ public class PuzzleSlot : MonoBehaviour
     private void Start()
     {
 
-        pubnumber = 4;
+        //SolveNumber = 4;
+        doorscript = GameObject.Find("Target").GetComponent<DoorCode>();
 
     }
     private void Update()
