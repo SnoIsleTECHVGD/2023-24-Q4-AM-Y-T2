@@ -13,22 +13,23 @@ public class PuzzleManager : MonoBehaviour
 
     void Start()
     {
-        
+        Spawn();
+
     }
 
     private void Update()
     {
 
-        slotchecker = GameObject.Find("Puzzle Slot 1(Clone)");
+        //slotchecker = GameObject.Find("Puzzle Slot 1(Clone)");
 
-        puzzlecounting = slotchecker.GetComponent<PuzzleSlot>().pubnumber;
+        //puzzlecounting = slotchecker.GetComponent<PuzzleSlot>().pubnumber;
 
-        if (puzzlecounting == 0)
-        {
-            Spawn();
-            CancelInvoke(nameof(Spawn));
+        //if (puzzlecounting == 0)
+        //{
+        //    Spawn();
+        //    CancelInvoke(nameof(Spawn));
 
-        }
+        //}
     }
 
     void Spawn()
