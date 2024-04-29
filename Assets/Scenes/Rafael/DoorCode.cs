@@ -22,6 +22,7 @@ public class DoorCode : MonoBehaviour
         //winonce = puzzlesolved.win;
         puzzlecount = GameObject.Find("Puzzle Slot 1(Clone)").GetComponent<PuzzleSlot>();
         
+        GlitchRandUp = Random.Range(16f, 23f) * 3;
     }
     public void RandomizeValues()
     {
@@ -30,7 +31,7 @@ public class DoorCode : MonoBehaviour
 
         GlitchRandRight = Random.Range(5f, 20f) * 2;
 
-      
+        GlitchRandUp = Random.Range(16f, 23f) * 3;
 
     }
 
@@ -177,9 +178,12 @@ public class DoorCode : MonoBehaviour
         if (puzzlecounter == 4)
         {
             upclosed = true;
-            RandomizeValuesVent();
+            //GLitchedOutUp = false;
+            //RandomizeValuesVent();
 
         }
+
+      
 
         //IF the door is closed, wait a certain amount of time to open them
         if (leftdoorclosed)
@@ -312,17 +316,24 @@ public class DoorCode : MonoBehaviour
             return;
         }
 
-        if (GLitchedOutUp)
+        //if (GLitchedOutUp)
+        //{
+
+        //    //upclosed = false;
+        //    GLitchedOutUp = false;
+        //    CancelInvoke(nameof(UpGlitch));
+        //    return;
+
+
+        //}
+
+        if (puzzlecounter < 4)
         {
 
             upclosed = false;
-            GLitchedOutUp = false;
-            CancelInvoke(nameof(UpGlitch));
-            return;
-
 
         }
-       
+
 
     }
 
@@ -417,7 +428,7 @@ public class DoorCode : MonoBehaviour
 
     void UpGlitch()
     {
-        puzzlecounter = 0;
+        //puzzlecounter = 0;
         GLitchedOutUp = true;
 
 

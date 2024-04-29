@@ -8,6 +8,8 @@ public class PuzzleSlot : MonoBehaviour
     public static int SolveNumber;
     public int pubnumber;
     public DoorCode doorscript;
+    public bool win,winonce;
+    public int wincount;
 
     //[SerializeField] private AudioSource _source;
     //[SerializeField] private AudioClip _completeClip;
@@ -15,7 +17,7 @@ public class PuzzleSlot : MonoBehaviour
     private void Start()
     {
 
-        //SolveNumber = 4;
+        SolveNumber = 4;
         doorscript = GameObject.Find("Target").GetComponent<DoorCode>();
 
     }
@@ -23,10 +25,47 @@ public class PuzzleSlot : MonoBehaviour
     {
 
         pubnumber = SolveNumber;
-        SolveNumber = pubnumber;
+
+        if (doorscript.GLitchedOutUp)
+        {
+            SolveNumber = 0;
+
+
+
+        }
+
+        if(SolveNumber == 4)
+        {
+
+            //win = true;
+            doorscript.GLitchedOutUp = false;
+        }
+
+        //if(win)
+        // {
+
+        //     WinOnce();
+        //     CancelInvoke(nameof(WinOnce));
+
+        // }
+
+        //if(winonce == true)
+        // {
+
+        //     winonce = false;
+
+        // }
 
     }
 
+
+    //void WinOnce()
+    //{
+
+    //    winonce = true;
+
+
+    //}
     public void Placed()
     {
         SolveNumber++;
