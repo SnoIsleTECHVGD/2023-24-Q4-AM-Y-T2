@@ -29,16 +29,25 @@ public class PuzzleSlot : MonoBehaviour
         if (doorscript.GLitchedOutUp)
         {
             SolveNumber = 0;
-
+            
 
 
         }
 
-        if(SolveNumber == 4)
-        {
+        //if(SolveNumber == 4)
+        //{
 
-            //win = true;
+        //    //win = true;
+        //    doorscript.GLitchedOutUp = false;
+        //}
+
+       
+
+        if(SolveNumber == 0 && !doorscript.upclosed)
+        {
             doorscript.GLitchedOutUp = false;
+
+
         }
 
         //if(win)
