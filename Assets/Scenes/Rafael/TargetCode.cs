@@ -17,11 +17,12 @@ public class TargetCode : MonoBehaviour
     public bool IsDead,EasyMode,MediumMode,HardMode,YouWon;
     private Animator creatureanim,WinAnim;
     public GameObject playercam,lose;
-    public Image WinFade,Dead;
+    public Image WinFade;
+    public GameObject Dead;
 
     private void Start()
     {
-        Dead.enabled = false;
+        Dead.GetComponent<Canvas>().enabled = false;
         deathtimer = 6.0f;
         GetComponent<SpriteRenderer>().enabled = false;
         IsDead = false;
@@ -209,7 +210,7 @@ public class TargetCode : MonoBehaviour
         
         Xcoord = playercam.transform.position.x;
         Ycoord = playercam.transform.position.y;
-        Dead.enabled = true;
+        
 
         transform.position = new Vector3(Xcoord, Ycoord, -99.0f);
         Invoke(nameof(TimeOutCorner), waittime);
@@ -226,7 +227,7 @@ public class TargetCode : MonoBehaviour
 
     void TimeOutCorner()
     {
-
+        Dead.GetComponent<Canvas>().enabled = true;
         playercam.transform.position = new Vector3(lose.transform.position.x, lose.transform.position.y, -100);
 
 
