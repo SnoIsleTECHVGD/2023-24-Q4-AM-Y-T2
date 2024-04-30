@@ -327,13 +327,18 @@ public class DoorCode : MonoBehaviour
 
         //}
 
+       
+
         if (puzzlecounter < 4)
         {
 
             upclosed = false;
-
+            GLitchedOutUp = false;
+            CancelInvoke(nameof(UpGlitch));
+            return;
         }
 
+       
 
     }
 
