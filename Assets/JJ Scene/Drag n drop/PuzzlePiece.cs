@@ -15,9 +15,10 @@ public class PuzzlePiece: MonoBehaviour
     public bool _dragging;
     public bool win;
 
-    private Vector2 _offset, _originalPosition;
+    public Vector2 _offset, _originalPosition;
 
     private PuzzleSlot _slot;
+    private DoorCode doorgood;
 
     public void Init(PuzzleSlot slot)
     {
@@ -29,7 +30,7 @@ public class PuzzlePiece: MonoBehaviour
     private void Awake()
     {
         _originalPosition = transform.position;
-       
+        doorgood = GameObject.Find("Target").GetComponent<DoorCode>();
     }
 
     private void Update()
@@ -47,7 +48,8 @@ public class PuzzlePiece: MonoBehaviour
         //    win = true;
 
         //}
-      
+
+       
 
     }
 
@@ -62,7 +64,7 @@ public class PuzzlePiece: MonoBehaviour
 
     public void OnMouseUp()
     {
-        if(Vector2.Distance(transform.position,_slot.transform.position) < 0.5)
+        if(Vector2.Distance(transform.position,_slot.transform.position) < 0.5 && !doorgood.GLitchedOutUp)
         {
             transform.position = _slot.transform.position;
             _slot.Placed();

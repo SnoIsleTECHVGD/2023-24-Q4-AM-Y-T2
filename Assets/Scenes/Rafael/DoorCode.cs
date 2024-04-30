@@ -245,6 +245,8 @@ public class DoorCode : MonoBehaviour
         {
             leftdoor = null;
             rightdoor = null;
+            leftdoorclosed = false;
+            rightdoorclosed = false;
             //vent = null;
             //leftentry = null;
             //rightentry = null;

@@ -18,6 +18,7 @@ public class MoveCam : MonoBehaviour
     private Animator FadeAnim;
     public float transitiontime;
 
+
     private void Start()
     {
 
