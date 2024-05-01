@@ -35,6 +35,14 @@ public class PuzzlePiece: MonoBehaviour
 
     private void Update()
     {
+
+
+        if (doorgood.GLitchedOutUp)
+        {
+            transform.position = _originalPosition;
+            _placed = false;
+            _dragging = false;
+        }
         if (_placed) return;
         if (!_dragging) return;
 
@@ -48,7 +56,12 @@ public class PuzzlePiece: MonoBehaviour
         //    win = true;
 
         //}
+        if (doorgood.GLitchedOutUp)
+        {
+            transform.position = _originalPosition;
 
+
+        }
        
 
     }
@@ -64,7 +77,7 @@ public class PuzzlePiece: MonoBehaviour
 
     public void OnMouseUp()
     {
-        if(Vector2.Distance(transform.position,_slot.transform.position) < 0.5 && !doorgood.GLitchedOutUp)
+        if(Vector2.Distance(transform.position,_slot.transform.position) < 0.5)
         {
             transform.position = _slot.transform.position;
             _slot.Placed();
