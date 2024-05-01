@@ -11,10 +11,11 @@ public class ErrorsForRooms : MonoBehaviour
 
     public Light2D[] _mapLights; //Lights for each room for when an error occurs there
     public Light2D errorLight;
-    public GameObject[] _puzzles;
 
     [SerializeField]
     private GameObject[] _rooms; //Creates an array that allows for any # of rooms
+    public GameObject[] _puzzle;
+
     [SerializeField]
     private float RunTime; //How long the game is running
 
@@ -190,8 +191,7 @@ public class ErrorsForRooms : MonoBehaviour
         IsThereError = true; //Bool that an error is happening, simplest part to understand i hope
         RoomNumber = error; // The indiactor of what room it is
         _mapLights[RoomNumber].gameObject.SetActive(true);
-        _puzzles[RoomNumber].gameObject.SetActive(true);
-
+        _puzzle[RoomNumber].gameObject.SetActive(true);
         #endregion
 
         Debug.Log(RoomError); //Debugging
