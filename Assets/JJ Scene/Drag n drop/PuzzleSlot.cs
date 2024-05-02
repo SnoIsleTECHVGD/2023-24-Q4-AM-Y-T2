@@ -10,7 +10,7 @@ public class PuzzleSlot : MonoBehaviour
     public DoorCode doorscript;
     public bool win,winonce;
     public int wincount;
-
+    public ErrorsForRooms errorcheck;
     //[SerializeField] private AudioSource _source;
     //[SerializeField] private AudioClip _completeClip;
 
@@ -18,12 +18,12 @@ public class PuzzleSlot : MonoBehaviour
     {
 
         SolveNumber = 4;
-        doorscript = GameObject.Find("Target").GetComponent<DoorCode>();
+        doorscript = GameObject.Find("MainOffice").GetComponent<DoorCode>();
 
     }
     private void Update()
     {
-
+        errorcheck = GameObject.Find("Main Camera").GetComponent<ErrorsForRooms>();
         pubnumber = SolveNumber;
 
         if (doorscript.GLitchedOutUp)
@@ -41,15 +41,36 @@ public class PuzzleSlot : MonoBehaviour
         //    doorscript.GLitchedOutUp = false;
         //}
 
+        if (SolveNumber == 0)
+        {
+
+            doorscript.upclosed = false;
+            
+        }
        
 
         if(SolveNumber == 0 && !doorscript.upclosed)
         {
             doorscript.GLitchedOutUp = false;
-
-
+           
+           
         }
 
+
+        if(SolveNumber == 4)
+        {
+            doorscript.upclosed = true;
+            //errorcheck.IsThereError = false;
+
+            
+        }
+
+        if (SolveNumber == 4 && errorcheck.RoomError == "HallwayRoom (UnityEngine.GameObject)")
+        {
+
+            errorcheck.RoomNumber = 0;
+
+        }
         //if(win)
         // {
 

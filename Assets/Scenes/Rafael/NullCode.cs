@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class NullCode : MonoBehaviour
 {
-    public GameObject Piece1, Piece2, Piece3, Piece4;
-    public int realinteger;
+
+    public GameObject player;
+    
     // Start is called before the first frame update
     void Start()
     {
-        realinteger = 4;
+       
     }
 
     // Update is called once per frame
@@ -17,12 +18,7 @@ public class NullCode : MonoBehaviour
     {
 
 
-        Piece1 = GameObject.Find("Puzzle Slot 1(Clone)");
-        Piece2 = GameObject.Find("Puzzle Slot 2(Clone)");
-        Piece3 = GameObject.Find("Puzzle Slot 3(Clone)");
-        Piece4 = GameObject.Find("Puzzle Slot 4(Clone)");
-      
-
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, 0f);
 
 
 

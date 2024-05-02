@@ -30,7 +30,7 @@ public class PuzzlePiece: MonoBehaviour
     private void Awake()
     {
         _originalPosition = transform.position;
-        doorgood = GameObject.Find("Target").GetComponent<DoorCode>();
+        doorgood = GameObject.Find("MainOffice").GetComponent<DoorCode>();
     }
 
     private void Update()
