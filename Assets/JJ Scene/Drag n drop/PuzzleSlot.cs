@@ -26,7 +26,7 @@ public class PuzzleSlot : MonoBehaviour
         errorcheck = GameObject.Find("Main Camera").GetComponent<ErrorsForRooms>();
         pubnumber = SolveNumber;
 
-        if (doorscript.GLitchedOutUp)
+        if (doorscript.GLitchedOutUp) //Opens the vent
         {
             SolveNumber = 0;
             
@@ -57,7 +57,7 @@ public class PuzzleSlot : MonoBehaviour
         }
 
 
-        if(SolveNumber == 4)
+        if(SolveNumber == 4) //Closes the vent
         {
             doorscript.upclosed = true;
             //errorcheck.IsThereError = false;

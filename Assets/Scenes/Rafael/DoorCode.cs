@@ -352,7 +352,7 @@ public class DoorCode : MonoBehaviour
        
     }
 
-    void UpGlitch()
+    public void UpGlitch()
     {
         //puzzlecounter = 0;
         GLitchedOutUp = true;

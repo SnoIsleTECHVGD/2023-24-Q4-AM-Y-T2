@@ -34,7 +34,7 @@ public class ErrorsForRooms : MonoBehaviour
     private float startingIntensity;
     private float time;
 
-    private GameManager gm;
+    private DoorCode door;
     #endregion
 
     // Start is called before the first frame update
@@ -95,34 +95,32 @@ public class ErrorsForRooms : MonoBehaviour
                 return;
             }
 
-            if(IsThereError)
+            if(IsThereError) //Turns on the light if an error is said to have happened
             {
                 float broski = 1; //Shhhhhhhh.....this isn't named poorly....
-
                 if (isMontiorOn)
                 {
-                    _mapLights[RoomNumber].gameObject.SetActive(true);
+                    if(door.GLitchedOutUp)
+                    {
+                        _mapLights[1].gameObject.SetActive(true);
+                        _mapLights[2].gameObject.SetActive(true);
+                    }
+                    if(!door.GLitchedOutUp)
+                    {
+                        _mapLights[3].gameObject.SetActive(true);
+                        _mapLights[4].gameObject.SetActive(true);
+                    }
+
                 }
                 flickerPerSecond = _mapLights.Count(item => item.gameObject.activeSelf);
                 time += Time.deltaTime * (1 + Random.Range(0, broski)) * Mathf.PI;
                 errorLight.intensity = startingIntensity + (Mathf.Sin(time * flickerPerSecond) + 1) * flickerIntenisty;
             }
-            if(Input.GetKeyDown(KeyCode.S))
-            {
-                errorLight.enabled = false;
-                foreach (Light2D blur in _mapLights)
-                {
-                    if (blur.gameObject.activeSelf)
-                    {
-                        blur.gameObject.SetActive(false);
-                    }
-                }
-            }
         }
     }
 
     #region Interact Calls
-    private void PuzzleDebuggerInteract()
+    public void PuzzleDebuggerInteract()
     {
         if (IsThereError)
         {
@@ -188,10 +186,7 @@ public class ErrorsForRooms : MonoBehaviour
         int error = Random.Range(0, _rooms.Length);
 
         RoomError = _rooms[error].ToString(); //Just Debugging to see and make sure it is hitting the right room 
-        IsThereError = true; //Bool that an error is happening, simplest part to understand i hope
         RoomNumber = error; // The indiactor of what room it is
-        _mapLights[RoomNumber].gameObject.SetActive(true);
-        _puzzle[RoomNumber].gameObject.SetActive(true);
         #endregion
 
         Debug.Log(RoomError); //Debugging
