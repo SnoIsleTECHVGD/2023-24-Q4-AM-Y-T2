@@ -8,6 +8,10 @@ public class LampFlicker : MonoBehaviour
 
     public float AcceratedTime;
 
+    public float maxIntensity;
+    public float minIntensity;
+
+
     private void Start()
     {
         random = Random.Range(0.0f, 10f);
@@ -16,10 +20,8 @@ public class LampFlicker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float maxxyMouse = 15.2f;
-        float minnyMouse = 2.0f;
         float noise = Mathf.PerlinNoise(random, Time.time * AcceratedTime);
 
-        Light.intensity = Mathf.Lerp(minnyMouse,maxxyMouse, noise);
+        Light.intensity = Mathf.Lerp(minIntensity,maxIntensity, noise);
     }
 }

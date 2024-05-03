@@ -62,7 +62,7 @@ MonoBehaviour:
   - {x: -9.57, y: -4.85, z: 0}
   m_ShapePathHash: -1075321744
   m_Mesh: {fileID: 0}
-  m_InstanceId: -192554
+  m_InstanceId: 44704
 --- !u!1 &6147921856766492726
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,7 +493,7 @@ MonoBehaviour:
   - {x: 7.56, y: -2.5883977, z: 0}
   m_ShapePathHash: -318251126
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46714
+  m_InstanceId: 44740
 --- !u!1 &6147921857306880987
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,6 +620,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Light: {fileID: 0}
   AcceratedTime: 0
+  maxIntensity: 15.2
+  minIntensity: 2
 --- !u!1 &6147921857416397144
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,7 +687,7 @@ MonoBehaviour:
   - {x: -3.18, y: 0.57, z: 0}
   m_ShapePathHash: -1854639299
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46722
+  m_InstanceId: 44748
 --- !u!1 &6147921857541107795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,7 +1152,7 @@ Transform:
   - {fileID: 6147921856899528968}
   - {fileID: 6147921858098378549}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6147921857810845777
 GameObject:
@@ -1502,7 +1504,7 @@ MonoBehaviour:
   - {x: 2.1, y: -2.56, z: 0.000000022351742}
   m_ShapePathHash: -1128319032
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46786
+  m_InstanceId: 44812
 --- !u!1 &6147921858515023596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,7 +1563,7 @@ MonoBehaviour:
   - {x: 3.6, y: -2.55, z: 0}
   m_ShapePathHash: 479514573
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46788
+  m_InstanceId: 44814
 --- !u!1 &6147921858554271667
 GameObject:
   m_ObjectHideFlags: 0
