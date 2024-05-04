@@ -43,15 +43,16 @@ public class DoorTension : MonoBehaviour
         }
 
 
-        if(Vector2.Distance(position, targetOpen) < 0.1)
+        if(Vector2.Distance(transform.position, StageOpen.transform.position) < 0.01)
         {
             DoorStatus.GetComponent<NavMeshObstacle>().enabled = false;
+            transform.position = StageOpen.transform.position;
             permaopen = true;
 
 
         }
 
-        if (!errored)
+        if (!errored && !permaopen)
         {
             step = 10f * Time.deltaTime;
 
