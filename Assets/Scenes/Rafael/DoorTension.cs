@@ -20,6 +20,7 @@ public class DoorTension : MonoBehaviour
     public static bool permaopen;
     public bool manualerror;
     public bool permacheck;
+    public ErrorsForRooms errorcheck;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +33,17 @@ public class DoorTension : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        errorcheck = GameObject.Find("Main Camera").GetComponent<ErrorsForRooms>();
         errored = manualerror;
         permacheck = permaopen;
+
+        if(errorcheck.RoomError == "Front exit (UnityEngine.GameObject)")
+        {
+            errored = true;
+
+
+        }
+
 
         if (errored)
         {

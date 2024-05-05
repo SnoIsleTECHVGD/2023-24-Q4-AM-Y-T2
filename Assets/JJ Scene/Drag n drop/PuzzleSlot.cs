@@ -7,7 +7,7 @@ public class PuzzleSlot : MonoBehaviour
     public SpriteRenderer Renderer;
     public static int SolveNumber;
     public int pubnumber;
-    public DoorCode doorscript;
+    public DoorCode doorscript,doorscript2,doorscript3;
     public bool win,winonce;
     public int wincount;
     public ErrorsForRooms errorcheck;
@@ -19,6 +19,7 @@ public class PuzzleSlot : MonoBehaviour
 
         SolveNumber = 4;
         doorscript = GameObject.Find("MainOffice").GetComponent<DoorCode>();
+        doorscript2 = GameObject.Find("Front exit").GetComponent<DoorCode>();
 
     }
     private void Update()
@@ -45,24 +46,25 @@ public class PuzzleSlot : MonoBehaviour
         {
 
             doorscript.upclosed = false;
-            
+            doorscript2.upclosed = false;
         }
        
 
         if(SolveNumber == 0 && !doorscript.upclosed)
         {
             doorscript.GLitchedOutUp = false;
-           
-           
+            doorscript2.GLitchedOutUp = false;
+
         }
 
 
         if(SolveNumber == 4) //Closes the vent
         {
             doorscript.upclosed = true;
+            doorscript2.upclosed = true;
             //errorcheck.IsThereError = false;
 
-            
+
         }
 
         if (SolveNumber == 4 && errorcheck.RoomError == "HallwayRoom (UnityEngine.GameObject)")
