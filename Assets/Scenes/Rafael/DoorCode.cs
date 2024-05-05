@@ -172,7 +172,7 @@ public class DoorCode : MonoBehaviour
 
         }
 
-        if (upclosed && errorcheck.RoomNumber == 2)
+        if (upclosed && errorcheck.RoomError == "HallwayRoom (UnityEngine.GameObject)")
         {
 
             UpGlitch();

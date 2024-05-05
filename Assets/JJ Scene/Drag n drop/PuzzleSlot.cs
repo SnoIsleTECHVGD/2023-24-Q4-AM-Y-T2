@@ -68,7 +68,12 @@ public class PuzzleSlot : MonoBehaviour
         if (SolveNumber == 4 && errorcheck.RoomError == "HallwayRoom (UnityEngine.GameObject)")
         {
 
-            errorcheck.RoomNumber = 0;
+            errorcheck.RoomError = null;
+
+        }
+        else
+        {
+            return;
 
         }
         //if(win)
