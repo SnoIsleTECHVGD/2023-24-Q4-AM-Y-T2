@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 
 public class MoveCam : MonoBehaviour
@@ -11,6 +12,7 @@ public class MoveCam : MonoBehaviour
     float Xcoord;
     float Ycoord;
     public GameObject destination;
+    public GameObject doorstatus;
     public float delaytimer;
     public bool clicked;
     //static bool Isfading;
@@ -63,10 +65,16 @@ public class MoveCam : MonoBehaviour
 
     private void Update()
     {
-        if(GetComponent<BoxCollider2D>().enabled == false && !clicked)
+        if(GetComponent<BoxCollider2D>().enabled == false && !clicked && !doorstatus.GetComponent<NavMeshObstacle>().enabled)
         {
 
             GetComponent<BoxCollider2D>().enabled = true;
+
+
+        }
+        else if (doorstatus.GetComponent<NavMeshObstacle>().enabled)
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
 
 
         }
@@ -99,7 +107,7 @@ public class MoveCam : MonoBehaviour
 
         //}
 
-
+      
 
 
 
