@@ -32,31 +32,33 @@ public class TargetCode : MonoBehaviour
         Xplayer = playercam.transform.position.x;
         Xcreature = transform.position.x;
 
-        if (EasyMode)
-        {
-            MediumMode = false;
-            HardMode = false;
+        //if (EasyMode)
+        //{
+        //    MediumMode = false;
+        //    HardMode = false;
 
-            WinTimer = 100.0f;
+        //    WinTimer = 100.0f;
 
-        }
+        //}
 
-        if (MediumMode)
-        {
-            EasyMode = false;
-            HardMode = false;
+        //if (MediumMode)
+        //{
+        //    EasyMode = false;
+        //    HardMode = false;
 
-            WinTimer = 200.0f;
+        //    WinTimer = 200.0f;
 
-        }
-        if (HardMode)
-        {
-            MediumMode = false;
-            EasyMode = false;
-            WinTimer = 300.0f;
+        //}
+        //if (HardMode)
+        //{
+        //    MediumMode = false;
+        //    EasyMode = false;
+        //    WinTimer = 300.0f;
 
 
-        }
+        //}
+
+        WinTimer = 480.0f;
     }
     //if the enemy finds the target it stops in place and appears
     private void OnTriggerEnter(Collider other)
