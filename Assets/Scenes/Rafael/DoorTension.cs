@@ -59,7 +59,7 @@ public class DoorTension : MonoBehaviour
 
         if (errored)
         {
-            step = 0.3f * Time.deltaTime;
+            step = 0.6f * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, targetOpen, step);
 
         }

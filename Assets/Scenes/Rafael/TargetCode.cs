@@ -58,7 +58,7 @@ public class TargetCode : MonoBehaviour
 
         //}
 
-        WinTimer = 480.0f;
+        WinTimer = 240.0f;
     }
     //if the enemy finds the target it stops in place and appears
     private void OnTriggerEnter(Collider other)
@@ -154,7 +154,7 @@ public class TargetCode : MonoBehaviour
 
         }
 
-        if(WinTimer <= 0.0f || Input.GetKeyDown(KeyCode.W))
+        if(WinTimer <= 0.0f || Input.GetKeyDown(KeyCode.LeftCurlyBracket))
         {
 
             Debug.Log("You Win!");
@@ -188,7 +188,7 @@ public class TargetCode : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Comma))
         {
             SceneManager.LoadScene("MainScene");
 

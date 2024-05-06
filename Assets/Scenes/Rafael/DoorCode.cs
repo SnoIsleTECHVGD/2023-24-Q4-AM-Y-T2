@@ -225,7 +225,7 @@ public class DoorCode : MonoBehaviour
 
 
 
-        if (GlitchedOutLeft)
+        if (GlitchedOutLeft && leftdoorclosed)
         {
 
             leftdoorclosed = false;
@@ -236,7 +236,7 @@ public class DoorCode : MonoBehaviour
       
        
 
-        if (GlitchedOutRight)
+        if (GlitchedOutRight && rightdoorclosed)
         {
 
             rightdoorclosed = false;
