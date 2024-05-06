@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzleSlot : MonoBehaviour
+public class ContainSlot : MonoBehaviour
 {
     public SpriteRenderer Renderer;
     public static int SolveNumber;
     public int pubnumber;
-    public DoorCode doorscript,doorscript2,doorscript3;
-    public bool win,winonce;
+    public DoorCode doorscript, doorscript2, doorscript3;
+    public DoorTension dooropen;
+    public bool win, winonce;
     public int wincount;
     public ErrorsForRooms errorcheck;
     //[SerializeField] private AudioSource _source;
@@ -27,10 +28,10 @@ public class PuzzleSlot : MonoBehaviour
         errorcheck = GameObject.Find("Main Camera").GetComponent<ErrorsForRooms>();
         pubnumber = SolveNumber;
 
-        if (doorscript.GLitchedOutUp) //Opens the vent
+        if (errorcheck.RoomError == "Front exit (UnityEngine.GameObject)" && errorcheck.ErrorTimer >= 59f) //Opens the vent
         {
             SolveNumber = 0;
-            
+
 
 
         }
@@ -42,45 +43,39 @@ public class PuzzleSlot : MonoBehaviour
         //    doorscript.GLitchedOutUp = false;
         //}
 
-        if (SolveNumber == 0)
-        {
+        //if (SolveNumber == 0)
+        //{
 
-            doorscript.upclosed = false;
-            doorscript2.upclosed = false;
-            doorscript3.upclosed = false;
-        }
-       
-
-        if(SolveNumber == 0 && !doorscript.upclosed)
-        {
-            doorscript.GLitchedOutUp = false;
-            doorscript2.GLitchedOutUp = false;
-            doorscript3.GLitchedOutUp = false;
-
-        }
+           
+        //}
 
 
-        if(SolveNumber == 4) //Closes the vent
-        {
-            doorscript.upclosed = true;
-            doorscript2.upclosed = true;
-            doorscript3.upclosed = true;
-            //errorcheck.IsThereError = false;
+        //if (SolveNumber == 0 && !doorscript.upclosed)
+        //{
+          
+
+        //}
 
 
-        }
+        //if (SolveNumber == 4) //Closes the vent
+        //{
+            
+        //    //errorcheck.IsThereError = false;
 
-        if (SolveNumber == 4 && errorcheck.RoomError == "HallwayRoom (UnityEngine.GameObject)")
-        {
 
-            errorcheck.RoomError = null;
+        //}
 
-        }
-        else
-        {
-            return;
+        //if (SolveNumber == 4 && errorcheck.RoomError == "Front exit (UnityEngine.GameObject)")
+        //{
 
-        }
+        //    errorcheck.RoomError = null;
+
+        //}
+        //else
+        //{
+        //    return;
+
+        //}
         //if(win)
         // {
 
@@ -113,7 +108,4 @@ public class PuzzleSlot : MonoBehaviour
         //return;
         //_source.PlayOneShot(_completeClip);
     }
-
-  
-
 }

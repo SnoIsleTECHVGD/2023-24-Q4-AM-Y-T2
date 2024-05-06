@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 839016740655112639}
   - component: {fileID: 839016740655112638}
-  - component: {fileID: 6872560885777378676}
   - component: {fileID: 7361948431109118613}
+  - component: {fileID: 3498680074855535000}
   m_Layer: 0
-  m_Name: SlotMain2
-  m_TagString: Untagged
+  m_Name: SlotMain
+  m_TagString: ContainSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,11 +28,11 @@ Transform:
   m_GameObject: {fileID: 839016740655112637}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.41, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &839016740655112638
 SpriteRenderer:
@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 608614559
+  m_SortingLayer: 2
   m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.30588236}
@@ -86,21 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6872560885777378676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839016740655112637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffdc1868b963cc44ab07b8f42ef04cbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Renderer: {fileID: 839016740655112638}
-  _source: {fileID: 7361948431109118613}
-  _completeClip: {fileID: 0}
 --- !u!82 &7361948431109118613
 AudioSource:
   m_ObjectHideFlags: 0
@@ -197,3 +182,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3498680074855535000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839016740655112637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbaafb76797252d48a5e05ba37251d37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Renderer: {fileID: 839016740655112638}
+  pubnumber: 0
+  doorscript: {fileID: 0}
+  doorscript2: {fileID: 0}
+  doorscript3: {fileID: 0}
+  dooropen: {fileID: 0}
+  win: 0
+  winonce: 0
+  wincount: 0
+  errorcheck: {fileID: 0}

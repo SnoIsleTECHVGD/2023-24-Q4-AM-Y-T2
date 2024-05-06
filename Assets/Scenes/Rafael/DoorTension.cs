@@ -14,16 +14,18 @@ public class DoorTension : MonoBehaviour
     //public GameObject DoorTargetClose;
     //private Vector2 targetclose;
     private Vector2 position;
-    public GameObject DoorStatus;
+    public GameObject DoorStatus,slotchecker;
     float step;
     public static bool errored;
     public static bool permaopen;
     public bool manualerror;
     public bool permacheck;
     public ErrorsForRooms errorcheck;
+    public ContainSlot isnumzero;
     // Start is called before the first frame update
     void Start()
     {
+        slotchecker = GameObject.Find("SlotMain 1(clone)");
         targetclosed = Stageclosed.transform.position;
         position = transform.position;
         targetOpen = StageOpen.transform.position;
@@ -33,13 +35,23 @@ public class DoorTension : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        slotchecker = GameObject.FindWithTag("ContainSlot");
         errorcheck = GameObject.Find("Main Camera").GetComponent<ErrorsForRooms>();
+        isnumzero = slotchecker.GetComponent<ContainSlot>();
         errored = manualerror;
+        manualerror = errored;
         permacheck = permaopen;
 
-        if(errorcheck.RoomError == "Front exit (UnityEngine.GameObject)")
+        if(errorcheck.RoomError == "Front exit (UnityEngine.GameObject)" && isnumzero.pubnumber < 4)
         {
             errored = true;
+
+
+        }
+
+        if(isnumzero.pubnumber == 4)
+        {
+            errored = false;
 
 
         }

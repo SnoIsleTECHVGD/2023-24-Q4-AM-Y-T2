@@ -23,7 +23,7 @@ public class TargetCode : MonoBehaviour
     private void Start()
     {
         Dead.GetComponent<Canvas>().enabled = false;
-        deathtimer = 6.0f;
+        deathtimer = 10.0f;
         GetComponent<SpriteRenderer>().enabled = false;
         IsDead = false;
         creatureanim = GetComponent<Animator>();
@@ -145,10 +145,10 @@ public class TargetCode : MonoBehaviour
             Invoke(nameof(DeathState), 0.1f);
         }
 
-        if(deathtimer >= 6.0f)
+        if(deathtimer >= 10.0f)
         {
 
-            deathtimer = 6.0f;
+            deathtimer = 10.0f;
 
         }
 

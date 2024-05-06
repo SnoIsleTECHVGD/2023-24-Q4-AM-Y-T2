@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 839016740655112637}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.41, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,8 +99,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Renderer: {fileID: 839016740655112638}
-  _source: {fileID: 7361948431109118613}
-  _completeClip: {fileID: 0}
+  pubnumber: 0
+  doorscript: {fileID: 0}
+  doorscript2: {fileID: 0}
+  doorscript3: {fileID: 0}
+  win: 0
+  winonce: 0
+  wincount: 0
+  errorcheck: {fileID: 0}
 --- !u!82 &7361948431109118613
 AudioSource:
   m_ObjectHideFlags: 0
