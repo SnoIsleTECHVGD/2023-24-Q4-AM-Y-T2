@@ -23,7 +23,7 @@ public class PuzzleColor : MonoBehaviour
     void Update()
     {
         //NAME THE CORRECT OBJECT, I SWEAR TO ALL THAT IS HOLY. I WON'T TAKE ANY BLAME FOR THIS. IT IS YOUR OWN MISTAKE FOOLS
-        if (targetPuzzle.GetComponent<DoorTension>().manualerror) //LOOK FOR THIS COMPONENT!!! IF IT DOESN'T HAVE THIS COMPONENT MUST MEAN YOU SHOULDN'T NAME IT. Thank you <3
+        if (targetPuzzle.GetComponent<DoorTension>().manualerror || targetPuzzle.GetComponent<DoorTension>().permacheck) //LOOK FOR THIS COMPONENT!!! IF IT DOESN'T HAVE THIS COMPONENT MUST MEAN YOU SHOULDN'T NAME IT. Thank you <3
         {
             PossibleJunkJoke.color = Color.red;
         }
