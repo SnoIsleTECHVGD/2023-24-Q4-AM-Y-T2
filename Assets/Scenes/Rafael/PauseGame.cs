@@ -20,7 +20,7 @@ public class PauseGame : MonoBehaviour
     {
 
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             paused = togglePause();
 
