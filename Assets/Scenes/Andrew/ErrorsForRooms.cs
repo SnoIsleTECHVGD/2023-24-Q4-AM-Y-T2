@@ -8,6 +8,9 @@ public class ErrorsForRooms : MonoBehaviour
     #region Variables
     public GameObject MapLayout;
     public GameObject Lamp;
+    public GameObject MapLamp;
+    public GameObject ComputerLighting;
+    public GameObject shadows;
 
     public Light2D[] _mapLights; //Lights for each room for when an error occurs there
     public Light2D errorLight;
@@ -141,7 +144,11 @@ public class ErrorsForRooms : MonoBehaviour
     {
         MapLayout.SetActive(false);
         isMontiorOn = false;
+        MapLamp.SetActive(false);
+        ComputerLighting.SetActive(false);
+
         Lamp.SetActive(true);
+        shadows.SetActive(true);
         if (IsThereError)
             errorLight.enabled = true;
     }
@@ -153,8 +160,12 @@ public class ErrorsForRooms : MonoBehaviour
 
         MapLayout.SetActive(true);
         isMontiorOn = true;
+        MapLamp.SetActive(true);
+        ComputerLighting.SetActive(true);
+
         Lamp.SetActive(false);
         errorLight.enabled = false;
+        shadows.SetActive(false);
     }
     #endregion
 
