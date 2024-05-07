@@ -8,10 +8,11 @@ public class Canvasswitch : MonoBehaviour
     public Canvas menucanvas;
     public Canvas tutorialmenu;
     
-  void GoTutorial()
+  public void GoTutorial()
     {
 
-
+        menucanvas.enabled = false;
+        tutorialmenu.enabled = true;
 
     }
 

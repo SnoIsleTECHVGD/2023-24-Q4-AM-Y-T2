@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadingguy: {fileID: 264246569}
-  Fading: {fileID: 0}
+  Fading: {fileID: 1474614457}
 --- !u!61 &572725829
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1134,6 +1134,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fe17747e1b6ef5946b7d3a4418440e59, type: 3}
+--- !u!95 &1474614457 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7106841412804893133, guid: fe17747e1b6ef5946b7d3a4418440e59, type: 3}
+  m_PrefabInstance: {fileID: 1474614456}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1668343474
 GameObject:
   m_ObjectHideFlags: 0

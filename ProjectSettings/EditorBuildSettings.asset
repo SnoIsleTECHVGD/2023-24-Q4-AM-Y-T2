@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Thomas/Tutorial.unity
     guid: 56d339abc00fd344b856cfee38431342
+  - enabled: 1
+    path: Assets/Scenes/Andrew/Emails.unity
+    guid: 9e26104945f4f74468fea90d84c4d4eb
   m_configObjects: {}
