@@ -9,7 +9,7 @@ using UnityEngine.Rendering.Universal;
 public class EmailSlider : MonoBehaviour
 {
     public GameObject[] emails;
-    private int CurrentSlide;
+   public int CurrentSlide;
 
     // Update is called once per frame
     void Update()
@@ -48,8 +48,8 @@ public class EmailSlider : MonoBehaviour
 
     private void NextInteract()
     {
-        if (CurrentSlide >= emails.Length)
-            return;
+        if (CurrentSlide > 11)
+            CurrentSlide = -1;
         if (CurrentSlide <= emails.Length)
         {
             CurrentSlide++;
@@ -67,6 +67,9 @@ public class EmailSlider : MonoBehaviour
 
     private void PreviousInteract()
     {
+
+        if (CurrentSlide < 1)
+            CurrentSlide = 13;
         CurrentSlide--;
         foreach (GameObject blur in emails)
         {
