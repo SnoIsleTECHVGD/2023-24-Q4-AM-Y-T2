@@ -174,21 +174,21 @@ public class ErrorsForRooms : MonoBehaviour
         #region Error Timer
         ErrorTimer = 60;
 
-        if(RunTime >= 45) //As time progress it will shorten the timer 
+        if(RunTime >= 80 && RunTime < 160) //As time progress it will shorten the timer 
         {
-            ErrorTimer = 60;
+            ErrorTimer = 50;
             Debug.Log("10 second timer");
         }
 
-        if(RunTime >= 80)
+        if(RunTime >= 160 && RunTime < 180)
         {
-            ErrorTimer = 60;
+            ErrorTimer = 40;
             Debug.Log("Decreasing to 8 seconds");
         }
 
-        if (RunTime >= 150) //Can add more if need be, or make it a large number
+        if (RunTime >= 180) //Can add more if need be, or make it a large number
         {
-            ErrorTimer = 60;
+            ErrorTimer = 30;
             Debug.Log("Decreasing to 6 seconds");
         }
         #endregion
