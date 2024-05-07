@@ -154,7 +154,7 @@ public class TargetCode : MonoBehaviour
 
         }
 
-        if(WinTimer <= 0.0f || Input.GetKeyDown(KeyCode.LeftCurlyBracket))
+        if(WinTimer <= 0.0f || Input.GetKeyDown(KeyCode.LeftBracket))
         {
 
             Debug.Log("You Win!");
