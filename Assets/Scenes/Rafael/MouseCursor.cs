@@ -11,14 +11,14 @@ public class MouseCursor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.SetCursor(texturetime, hotSpot, mousetime);
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
 
+        Cursor.SetCursor(texturetime, hotSpot, mousetime);
 
     }
 }
