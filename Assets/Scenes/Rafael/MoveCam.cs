@@ -19,17 +19,24 @@ public class MoveCam : MonoBehaviour
     public GameObject Blackoutsquare;
     private Animator FadeAnim;
     public float transitiontime;
-
+    PauseMenu pausecheck;
+    public GameObject pauseverify;
 
     private void Start()
     {
 
-
+        pausecheck = pauseverify.GetComponent<PauseMenu>();
         FadeAnim = Blackoutsquare.GetComponent<Animator>();
 
     }
     private void OnMouseDown()
     {
+        if (pausecheck.pausecheck)
+        {
+
+            return;
+
+        }
 
         Xcoord = destination.transform.position.x;
         Ycoord = destination.transform.position.y;

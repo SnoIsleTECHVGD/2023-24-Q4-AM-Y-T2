@@ -15,10 +15,12 @@ public class DoorCode : MonoBehaviour
     public ErrorsForRooms errorcheck;
     PuzzleSlot puzzlecount;
     public int puzzlecounter;
+    PauseMenu pausecheck;
+    public GameObject pauseverify;
 
     private void Start()
     {
-
+        pausecheck = pauseverify.GetComponent<PauseMenu>();
         //winonce = puzzlesolved.win;
         //puzzlecount = GameObject.Find("Puzzle Slot 1(Clone)").GetComponent<PuzzleSlot>();
         errorcheck = GameObject.Find("Main Camera").GetComponent<ErrorsForRooms>();
@@ -48,7 +50,12 @@ public class DoorCode : MonoBehaviour
     //}
     private void Update()
     {
-       
+        if (pausecheck.pausecheck)
+        {
+
+            return;
+
+        }
 
         //puzzlecounter = puzzlecount.pubnumber;
         //puzzlecount.pubnumber = puzzlecounter;

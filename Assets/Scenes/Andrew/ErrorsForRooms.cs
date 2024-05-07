@@ -38,11 +38,16 @@ public class ErrorsForRooms : MonoBehaviour
     private float time;
 
     private DoorCode door;
+
+    PauseMenu pausecheck;
+    public GameObject pauseverify;
+
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
+        pausecheck = pauseverify.GetComponent<PauseMenu>();
         ErrorTimer = 10;
         startingIntensity = errorLight.intensity;
     }
@@ -50,7 +55,13 @@ public class ErrorsForRooms : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if (pausecheck.pausecheck)
+        {
+
+            return;
+
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var touchPos = new Vector2 (wp.x, wp.y);
