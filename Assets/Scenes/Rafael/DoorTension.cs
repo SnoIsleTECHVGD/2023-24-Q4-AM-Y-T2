@@ -42,7 +42,14 @@ public class DoorTension : MonoBehaviour
         manualerror = errored;
         permacheck = permaopen;
 
-        if(errorcheck.RoomError == "Front exit (UnityEngine.GameObject)" && isnumzero.pubnumber < 4)
+        if(Input.GetKeyDown(KeyCode.Keypad5))
+        {
+           
+            errorcheck.RoomError = "Front exit (UnityEngine.GameObject)";
+
+        }
+
+        if (errorcheck.RoomError == "Front exit (UnityEngine.GameObject)" && isnumzero.pubnumber < 4 )
         {
             errored = true;
 
@@ -57,9 +64,9 @@ public class DoorTension : MonoBehaviour
         }
 
 
-        if (errored)
+        if (errored || Input.GetKeyDown(KeyCode.Keypad5))
         {
-            step = 0.3f * Time.deltaTime;
+            step = 0.5f * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, targetOpen, step);
 
         }

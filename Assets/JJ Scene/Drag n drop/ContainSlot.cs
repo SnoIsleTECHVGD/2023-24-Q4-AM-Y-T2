@@ -28,7 +28,7 @@ public class ContainSlot : MonoBehaviour
         errorcheck = GameObject.Find("Main Camera").GetComponent<ErrorsForRooms>();
         pubnumber = SolveNumber;
 
-        if (errorcheck.RoomError == "Front exit (UnityEngine.GameObject)" && errorcheck.ErrorTimer >= 59f) //Opens the vent
+        if (errorcheck.RoomError == "Front exit (UnityEngine.GameObject)" && errorcheck.ErrorTimer >= 59f || Input.GetKeyDown(KeyCode.Keypad5)) //Opens the vent
         {
             SolveNumber = 0;
 

@@ -20,9 +20,9 @@ public class DoorCode : MonoBehaviour
     {
 
         //winonce = puzzlesolved.win;
-        puzzlecount = GameObject.Find("Puzzle Slot 1(Clone)").GetComponent<PuzzleSlot>();
+        //puzzlecount = GameObject.Find("Puzzle Slot 1(Clone)").GetComponent<PuzzleSlot>();
         errorcheck = GameObject.Find("Main Camera").GetComponent<ErrorsForRooms>();
-        GlitchRandUp = Random.Range(16f, 23f) * 3;
+        //GlitchRandUp = Random.Range(16f, 23f) * 3;
     }
     public void RandomizeValues()
     {
@@ -31,23 +31,25 @@ public class DoorCode : MonoBehaviour
 
         GlitchRandRight = Random.Range(5f, 20f) * 2;
 
-        GlitchRandUp = Random.Range(16f, 23f) * 3;
+        //GlitchRandUp = Random.Range(16f, 23f) * 3;
 
     }
 
 
-    public void RandomizeValuesVent()
-    {
+    //public void RandomizeValuesVent()
+    //{
 
-        GlitchRandUp = Random.Range(16f, 23f) * 3;
-
-
+    //    GlitchRandUp = Random.Range(16f, 23f) * 3;
 
 
 
-    }
+
+
+    //}
     private void Update()
     {
+       
+
         //puzzlecounter = puzzlecount.pubnumber;
         //puzzlecount.pubnumber = puzzlecounter;
         //puzzlecount = GameObject.Find("Puzzle Slot 1(Clone)");
@@ -64,7 +66,8 @@ public class DoorCode : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && Vector2.Distance(transform.position, Playerpos.transform.position) < 0.5)
         {
             rightdoorclosed = RightDoorClosed();
-
+            RandomizeValues();
+            //CancelInvoke(nameof(RandomizeValues));
 
         }
 
@@ -99,7 +102,8 @@ public class DoorCode : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && Vector2.Distance(transform.position, Playerpos.transform.position) < 0.5)
         {
             leftdoorclosed = LeftDoorClosed();
-
+            RandomizeValues();
+            //CancelInvoke(nameof(RandomizeValues));
 
         }
 
@@ -120,8 +124,7 @@ public class DoorCode : MonoBehaviour
         if (leftdoorclosed)
         {
             //RandomizeValues();
-            leftglitchtime = GlitchRandLeft;
-            Invoke(nameof(LeftGlitch), leftglitchtime);
+            
             leftentry.GetComponent<BoxCollider2D>().enabled = false;
             leftdoor.GetComponent<NavMeshObstacle>().enabled = true;
         }
@@ -132,20 +135,18 @@ public class DoorCode : MonoBehaviour
             leftdoor.GetComponent<NavMeshObstacle>().enabled = false;
         }
         
-        if (leftdoorclosed && Input.GetKeyDown(KeyCode.Q) || rightdoorclosed && Input.GetKeyDown(KeyCode.E))
-        {
-            RandomizeValues();
-            CancelInvoke(nameof(RandomizeValues));
+        //if (leftdoorclosed && Input.GetKeyDown(KeyCode.Q) || rightdoorclosed && Input.GetKeyDown(KeyCode.E))
+        //{
+           
 
-        }
+        //}
 
         
 
         if (rightdoorclosed)
         {
             //RandomizeValues();
-            rightglitchtime = GlitchRandRight;
-            Invoke(nameof(RightGlitch), rightglitchtime);
+            
             rightentry.GetComponent<BoxCollider2D>().enabled = false;
             rightdoor.GetComponent<NavMeshObstacle>().enabled = true;
 
@@ -179,7 +180,21 @@ public class DoorCode : MonoBehaviour
             
         }
 
-        
+        if (leftdoorclosed)
+        {
+
+
+            leftglitchtime = GlitchRandLeft;
+            Invoke(nameof(LeftGlitch), leftglitchtime);
+        }
+
+
+        if (rightdoorclosed)
+        {
+            rightglitchtime = GlitchRandRight;
+            Invoke(nameof(RightGlitch), rightglitchtime);
+
+        }
 
 
         // For making the randomized script only happen once so the bool does not constantly generate random values
@@ -225,7 +240,7 @@ public class DoorCode : MonoBehaviour
 
 
 
-        if (GlitchedOutLeft)
+        if (GlitchedOutLeft && leftdoorclosed)
         {
 
             leftdoorclosed = false;
@@ -236,7 +251,7 @@ public class DoorCode : MonoBehaviour
       
        
 
-        if (GlitchedOutRight)
+        if (GlitchedOutRight && rightdoorclosed)
         {
 
             rightdoorclosed = false;
