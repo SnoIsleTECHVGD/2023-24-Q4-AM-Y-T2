@@ -103,7 +103,7 @@ public class ContainSlot : MonoBehaviour
     //}
     public void Placed()
     {
-        SolveNumber++;
+        SolveNumber = SolveNumber + 1;
         Debug.Log(SolveNumber);
         //return;
         //_source.PlayOneShot(_completeClip);
