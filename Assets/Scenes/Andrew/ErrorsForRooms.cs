@@ -47,7 +47,7 @@ public class ErrorsForRooms : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pausecheck = pauseverify.GetComponent<PauseMenu>();
+       
         ErrorTimer = 10;
         startingIntensity = errorLight.intensity;
     }
@@ -55,6 +55,7 @@ public class ErrorsForRooms : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        pausecheck = pauseverify.GetComponent<PauseMenu>();
         if (pausecheck.pausecheck)
         {
 

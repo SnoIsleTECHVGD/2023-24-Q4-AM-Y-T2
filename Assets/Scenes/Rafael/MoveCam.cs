@@ -14,7 +14,8 @@ public class MoveCam : MonoBehaviour
     public GameObject destination;
     public GameObject doorstatus;
     public float delaytimer;
-    public bool clicked;
+    public static bool clicked;
+    public bool clickcheck;
     //static bool Isfading;
     public GameObject Blackoutsquare;
     private Animator FadeAnim;
@@ -25,18 +26,13 @@ public class MoveCam : MonoBehaviour
     private void Start()
     {
 
-        pausecheck = pauseverify.GetComponent<PauseMenu>();
+        
         FadeAnim = Blackoutsquare.GetComponent<Animator>();
 
     }
     private void OnMouseDown()
     {
-        if (pausecheck.pausecheck)
-        {
-
-            return;
-
-        }
+      
 
         Xcoord = destination.transform.position.x;
         Ycoord = destination.transform.position.y;
@@ -58,7 +54,7 @@ public class MoveCam : MonoBehaviour
         Cam.transform.position = new Vector3(Xcoord, Ycoord, -100.0f);
         Invoke(nameof(DisableAnim), 0.3f);
         //Isfading = true;
-        GetComponent<BoxCollider2D>().enabled = true;
+
     }
 
     void DisableAnim()
@@ -66,25 +62,58 @@ public class MoveCam : MonoBehaviour
        
         FadeAnim.enabled = false;
         //Isfading= false;
-        clicked = false;
+    
+        Invoke(nameof(CanClickAgain), 0.03f);
 
     }
 
+
+    void CanClickAgain()
+    {
+        GetComponent<BoxCollider2D>().enabled = true;
+        clicked = false;
+
+    }
     private void Update()
     {
-        if(GetComponent<BoxCollider2D>().enabled == false && !clicked && !doorstatus.GetComponent<NavMeshObstacle>().enabled)
+
+       
+        clickcheck = clicked;
+        pausecheck = pauseverify.GetComponent<PauseMenu>();
+        if (pausecheck.pausecheck)
         {
 
-            GetComponent<BoxCollider2D>().enabled = true;
-
+            return;
 
         }
-        else if (doorstatus.GetComponent<NavMeshObstacle>().enabled)
+        //if (GetComponent<BoxCollider2D>().enabled == false &&  !doorstatus.GetComponent<NavMeshObstacle>().enabled)
+        //{
+
+        //    
+
+
+        //}
+
+        if ( GetComponent<BoxCollider2D>().enabled == true && clicked)
+        {
+
+
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
+
+        if (doorstatus.GetComponent<NavMeshObstacle>().enabled || clicked)
         {
             GetComponent<BoxCollider2D>().enabled = false;
 
 
         }
+        else
+        {
+            GetComponent<BoxCollider2D>().enabled = true;
+
+        }
+
+       
         //if (clicked)
         //{
         //    delaytimer -= Time.deltaTime;

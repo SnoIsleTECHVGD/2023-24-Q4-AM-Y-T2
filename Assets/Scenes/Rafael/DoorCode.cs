@@ -20,7 +20,7 @@ public class DoorCode : MonoBehaviour
 
     private void Start()
     {
-        pausecheck = pauseverify.GetComponent<PauseMenu>();
+       
         //winonce = puzzlesolved.win;
         //puzzlecount = GameObject.Find("Puzzle Slot 1(Clone)").GetComponent<PuzzleSlot>();
         errorcheck = GameObject.Find("Main Camera").GetComponent<ErrorsForRooms>();
@@ -50,6 +50,7 @@ public class DoorCode : MonoBehaviour
     //}
     private void Update()
     {
+        pausecheck = pauseverify.GetComponent<PauseMenu>();
         if (pausecheck.pausecheck)
         {
 
@@ -154,13 +155,13 @@ public class DoorCode : MonoBehaviour
         {
             //RandomizeValues();
             
-            rightentry.GetComponent<BoxCollider2D>().enabled = false;
+            //rightentry.GetComponent<BoxCollider2D>().enabled = false;
             rightdoor.GetComponent<NavMeshObstacle>().enabled = true;
 
         }
         else
         {
-            rightentry.GetComponent<BoxCollider2D>().enabled = true;
+            //rightentry.GetComponent<BoxCollider2D>().enabled = true;
             rightdoor.GetComponent<NavMeshObstacle>().enabled = false;
 
         }

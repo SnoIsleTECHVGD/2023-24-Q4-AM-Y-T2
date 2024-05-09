@@ -35,11 +35,12 @@ public class ContainPiece : MonoBehaviour
     {
         doorgood = GameObject.FindWithTag("ContainRoom").GetComponent<DoorTension>();
 
-        if (!doorgood.manualerror && _slot.pubnumber == 4)
+        if (!doorgood.manualerror && _slot.pubnumber >= 4)
         {
             transform.position = _slot.transform.position;
             _placed = false;
             _dragging = false;
+            
         }
         else if (_slot.pubnumber == 0)
         {
@@ -47,7 +48,18 @@ public class ContainPiece : MonoBehaviour
 
 
         }
-        if (_placed) return;
+        if (_placed)
+        {
+
+            GetComponent<BoxCollider2D>().enabled = false;
+            return;
+        }
+        else
+        {
+
+            GetComponent<BoxCollider2D>().enabled = true;
+
+        }
         if (!_dragging) return;
 
 

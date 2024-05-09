@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
-using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 
@@ -16,7 +16,7 @@ public class TargetCode : MonoBehaviour
     public float timer,deathtimer,WinTimer,Xplayer,Xcreature,Xcoord,Ycoord,chasespeed = 8.0f,patrolspeed = 3.5f, waittime;
     public bool IsDead,EasyMode,MediumMode,HardMode,YouWon;
     private Animator creatureanim,WinAnim;
-    public GameObject playercam,lose;
+    public GameObject playercam,lose,Corpselight;
     public Image WinFade;
     public GameObject Dead;
 
@@ -25,6 +25,7 @@ public class TargetCode : MonoBehaviour
         Dead.GetComponent<Canvas>().enabled = false;
         deathtimer = 10.0f;
         GetComponent<SpriteRenderer>().enabled = false;
+        Corpselight.GetComponent<Light2D>().enabled = false;
         IsDead = false;
         creatureanim = GetComponent<Animator>();
         WinAnim = WinFade.GetComponent<Animator>();
@@ -69,6 +70,7 @@ public class TargetCode : MonoBehaviour
         {
             //Spotted = true;
             GetComponent<SpriteRenderer>().enabled = true;
+            Corpselight.GetComponent<Light2D>().enabled = true;
             GetComponent<NavMeshAgent>().speed = 0;
             
         }
@@ -102,7 +104,8 @@ public class TargetCode : MonoBehaviour
             GetComponent<NavMeshAgent>().speed = chasespeed;
             GetComponent<NavMeshAgent>().acceleration = 99999999f;
             GetComponent<SpriteRenderer>().enabled = false;
-           
+            Corpselight.GetComponent<Light2D>().enabled = false;
+
         }
 
 

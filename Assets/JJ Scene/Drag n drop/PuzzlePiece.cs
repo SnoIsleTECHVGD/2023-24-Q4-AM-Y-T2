@@ -49,7 +49,18 @@ public class PuzzlePiece: MonoBehaviour
 
 
         }
-        if (_placed) return;
+        if (_placed)
+        {
+
+           GetComponent<BoxCollider2D>().enabled = false;
+            return;
+        }
+        else
+        {
+
+            GetComponent<BoxCollider2D>().enabled = true;
+
+        }
         if (!_dragging) return;
 
 

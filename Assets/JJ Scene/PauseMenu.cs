@@ -18,14 +18,25 @@ public class PauseMenu : MonoBehaviour
         pausecheck = isGamePaused;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            
             if (isGamePaused)
             {
                 ResumeGame();
+                
             }
             else
             {
                 PauseGame();
+                
             }
+
+            
+        }
+
+        if (Time.timeScale == 0 && !isGamePaused)
+        {
+
+            Time.timeScale = 1f;
         }
     }
 
@@ -43,6 +54,8 @@ public class PauseMenu : MonoBehaviour
        fadecanvas.SetActive(false);
         Time.timeScale = 0f;
         isGamePaused = true;
+      
+
     }
 
     public void LoadMenu()
